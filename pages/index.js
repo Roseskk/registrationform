@@ -166,6 +166,49 @@ export default function Home() {
                       <p className={'text-center'}><strong>Прошу допустить меня</strong> к участию в конкурсе на зачисление и к вступительным испытаниям<br/>
                           по направлению подготовки <strong>ДИЗАЙН</strong> на места по договорам об оказании платных образовательных услуг:</p>
                   </div>
+
+                  <table className="w-full border text-center">
+                      <caption className={'text-xs border'}>КОНКУРС</caption>
+                      <thead className="border-b">
+                      <tr>
+                          <th scope="col" className="text-xs font-bold  text-gray-900 border-r">
+                              Уровень образования
+                          </th>
+                          <th scope="col" className="text-xs font-bold  text-gray-900 border-r">
+                              <label className={'flex  justify-center items-center gap-2  text-xs'}>
+                                  БАКАЛАВРИАТ
+                                  <input type={"checkbox"}/>
+                              </label>
+                          </th>
+                          <th scope="col" className="text-xs font-bold  text-gray-900  border-r">
+                              <label className={'flex  justify-center items-center  gap-2 text-xs'}>
+                                  МАГИСТРАТУРА
+                                  <input type={"checkbox"}/>
+                              </label>
+                          </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr className="border-b">
+                          <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap border-r">
+                              ФОРМА ОБУЧЕНИЯ
+                          </td>
+                          <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap border-r">
+                              <label className={'flex  justify-center items-center gap-2  text-xs'}>
+                                  очная
+                                  <input type={"checkbox"}/>
+                              </label>
+                          </td>
+                          <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+                              <label className={'flex  justify-center items-center gap-2  text-xs'}>
+                                  очно-заочная
+                                  <input type={"checkbox"}/>
+                              </label>
+                          </td>
+                      </tr>
+                      </tbody>
+                  </table>
+
               </div>
           </form>
       </div>
