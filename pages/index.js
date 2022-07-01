@@ -53,15 +53,15 @@ export default function Home() {
                   <div className={'w-4/6 flex flex-col gap-1 items-center'}>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Фамилия</label>
-                          <input className={'w-4/6 border'} />
+                          <input className={'w-4/6 border uppercase'} />
                       </div>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Имя</label>
-                          <input className={'w-4/6 border'} />
+                          <input className={'w-4/6 border uppercase'} />
                       </div>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Отчество</label>
-                          <input className={'w-4/6 border'} />
+                          <input className={'w-4/6 border uppercase'} />
                       </div>
                   </div>
                   <div className={'w-2/6'}>
@@ -155,6 +155,16 @@ export default function Home() {
                               <input className={'w-1/5 '} type={"text"}/>
                           </div>
                       </div>
+                  </div>
+                  <div className={'flex w-full text-xs gap-5'}>
+                      <h2 className={''}>Телефон</h2>
+                      <input className={'w-2/6'} type={"number"} />
+                      <h2 className={''}>E-mail</h2>
+                      <input className={'w-2/6'} type={"email"}/>
+                  </div>
+                  <div className={'flex items-center justify-center text-xs w-full'}>
+                      <p className={'text-center'}><strong>Прошу допустить меня</strong> к участию в конкурсе на зачисление и к вступительным испытаниям<br/>
+                          по направлению подготовки <strong>ДИЗАЙН</strong> на места по договорам об оказании платных образовательных услуг:</p>
                   </div>
               </div>
           </form>
