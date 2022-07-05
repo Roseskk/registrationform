@@ -166,48 +166,120 @@ export default function Home() {
                       <p className={'text-center'}><strong>Прошу допустить меня</strong> к участию в конкурсе на зачисление и к вступительным испытаниям<br/>
                           по направлению подготовки <strong>ДИЗАЙН</strong> на места по договорам об оказании платных образовательных услуг:</p>
                   </div>
+                  <div className={'w-full'}>
+                      <table className="w-full border text-center">
+                          <caption className={'text-xs border'}>КОНКУРС</caption>
+                          <thead className="border-b">
+                          <tr>
+                              <th scope="col" className="text-xs font-bold  text-gray-900 border-r">
+                                  Уровень образования
+                              </th>
+                              <th scope="col" className="text-xs font-bold  text-gray-900 border-r">
+                                  <label className={'flex  justify-center items-center gap-2  text-xs'}>
+                                      БАКАЛАВРИАТ
+                                      <input type={"checkbox"}/>
+                                  </label>
+                              </th>
+                              <th scope="col" className="text-xs font-bold  text-gray-900  border-r">
+                                  <label className={'flex  justify-center items-center  gap-2 text-xs'}>
+                                      МАГИСТРАТУРА
+                                      <input type={"checkbox"}/>
+                                  </label>
+                              </th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr className="border-b">
+                              <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap border-r">
+                                  ФОРМА ОБУЧЕНИЯ
+                              </td>
+                              <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap border-r">
+                                  <label className={'flex  justify-center items-center gap-2  text-xs'}>
+                                      очная
+                                      <input type={"checkbox"}/>
+                                  </label>
+                              </td>
+                              <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+                                  <label className={'flex  justify-center items-center gap-2  text-xs'}>
+                                      очно-заочная
+                                      <input type={"checkbox"}/>
+                                  </label>
+                              </td>
+                          </tr>
+                          <tr className="border-b ">
+                              <td className="text-xs text-left w-full  font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap gap-1 flex flex-col ">
+                                  <span>Направление подготовки: 54.03.01 ДИЗАЙН бакалавриат</span> <br />
+                                  <span>Направленность (профиль): ________________________</span>
 
-                  <table className="w-full border text-center">
-                      <caption className={'text-xs border'}>КОНКУРС</caption>
-                      <thead className="border-b">
-                      <tr>
-                          <th scope="col" className="text-xs font-bold  text-gray-900 border-r">
-                              Уровень образования
-                          </th>
-                          <th scope="col" className="text-xs font-bold  text-gray-900 border-r">
-                              <label className={'flex  justify-center items-center gap-2  text-xs'}>
-                                  БАКАЛАВРИАТ
-                                  <input type={"checkbox"}/>
-                              </label>
-                          </th>
-                          <th scope="col" className="text-xs font-bold  text-gray-900  border-r">
-                              <label className={'flex  justify-center items-center  gap-2 text-xs'}>
-                                  МАГИСТРАТУРА
-                                  <input type={"checkbox"}/>
-                              </label>
-                          </th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr className="border-b">
-                          <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap border-r">
-                              ФОРМА ОБУЧЕНИЯ
-                          </td>
-                          <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap border-r">
-                              <label className={'flex  justify-center items-center gap-2  text-xs'}>
-                                  очная
-                                  <input type={"checkbox"}/>
-                              </label>
-                          </td>
-                          <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap">
-                              <label className={'flex  justify-center items-center gap-2  text-xs'}>
-                                  очно-заочная
-                                  <input type={"checkbox"}/>
-                              </label>
-                          </td>
-                      </tr>
-                      </tbody>
-                  </table>
+                              </td>
+                          </tr>
+                          <tr className={'w-full'}>
+                              <td className="text-xs text-left w-full  font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap gap-1 flex flex-col ">
+                                  <span>Направление подготовки: 54.03.01 ДИЗАЙН магистратура</span> <br />
+                                  <span>Направленность (профиль): __________________________</span>
+                              </td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div className={'w-full flex flex-col gap-0'}>
+                      <span className={'font-bold text-xs pl-3'}>Прошу засчитать в качестве результатов вступительных экзаменов результаты ЕГЭ:</span>
+                      <table className="w-full border text-center">
+                          <thead className="border-b w-full">
+                          <tr className={'w-full'}>
+                              <th scope="col" className="text-xs font-bold w-1/6  text-gray-900 border-r">
+                                  Предметы
+                              </th>
+                              <th scope="col" className="text-xs font-bold w-4/6  text-gray-900 border-r">
+
+                              </th>
+                              <th scope="col" className="text-xs font-bold w-1/6  text-gray-900  border-r">
+                                 Баллы
+                              </th>
+                          </tr>
+                          </thead>
+                      </table>
+                      <div className={'text-xs w-full mt-1 flex items-center justify-between'}>
+                          <div className={'flex gap-5 items-center w-7/12'}>
+                              <span className={'w-4/12'}>литерутара</span>
+                              <div className={'flex items-center gap-1 '}>
+                                  <label>год сдачи</label>
+                                  <input className={'border-t-0 border-l-0 border-r-0 '} type={'text'}/>
+                              </div>
+                          </div>
+                          <input className={'border pl-2 pr-2   w-1/12'}/>
+                      </div>
+                      <div className={'text-xs w-full mt-1 flex items-center justify-between'}>
+                          <div className={'flex gap-5 items-center w-7/12'}>
+                              <span className={'w-4/12'}>русский язык</span>
+                              <div className={'flex items-center gap-1'}>
+                                  <label>год сдачи</label>
+                                  <input className={'border-t-0 border-l-0 border-r-0 '} type={'text'}/>
+                              </div>
+                          </div>
+                          <input className={'border pl-2 pr-2   w-1/12'}/>
+                      </div>
+                  </div>
+
+                  <div className={'flex mt-2 flex-col w-full gap-1'}>
+                      <span className={'font-bold text-xs'}>Прошу засчитать в качестве результатов вступительных экзаменов результаты олимпиады:</span>
+                      <div className={'w-full flex text-xs items-center '}>
+                          <div className={'w-1/6 border border-black text-center'}><span>Предмет</span></div>
+                          <div className={'w-5/6 border border-black text-center'}><span>Наименование (номер) олимпиады и реквизиты документа, подтверждающего результаты</span></div>
+                      </div>
+                      <div className={'w-full flex text-xs items-center '}>
+                          <div className={'w-1/6 border border-black text-center'}><input className={'w-full border-none'} type={'text'}/> </div>
+                          <div className={'w-5/6 border border-black text-center '}><input className={'w-full border-none'}/></div>
+                      </div>
+                      <div className={'w-full flex text-xs items-center '}>
+                          <div className={'w-1/6 border border-black text-center'}><input className={'w-full border-none'} type={'text'}/> </div>
+                          <div className={'w-5/6 border border-black text-center '}><input className={'w-full border-none'}/></div>
+                      </div>
+                      <div className={'w-full flex text-xs items-center '}>
+                          <div className={'w-1/6 border border-black text-center'}><input className={'w-full border-none'} type={'text'}/> </div>
+                          <div className={'w-5/6 border border-black text-center '}><input className={'w-full border-none'}/></div>
+                      </div>
+                  </div>
 
               </div>
           </form>
