@@ -281,6 +281,69 @@ export default function Home() {
                       </div>
                   </div>
 
+                  <div className={'w-full flex flex-col gap-1 text-xs'}>
+                      <span className={'font-bold'}>* Имею право на поступление по результатам вступительных испытаний в форме, установленной вузом (при отсутствии результатов ЕГЭ):</span>
+                      <div className={'w-full flex'}>
+                          <span className={'font-bold w-6/12'}>Предметы</span>
+                          <div className={'w-6/12'}>
+                              <input className={'w-1/2'} type={'text'}/>
+                              <input className={'w-1/2'} type={'text'}/>
+                          </div>
+                      </div>
+                      <div className={'flex gap-1'}>
+                          <span className={'font-bold'}>Дополнительное испытание творческой и (или) профессиональной направленности</span>
+                          <input type={"checkbox"}/>
+                      </div>
+                      <div className={'flex gap-1'}>
+                          <span className={'font-bold'}>Собеседование с просмотром</span>
+                          <input type={"checkbox"}/>
+                      </div>
+                      <div className={'flex gap-5'}>
+                          <span className={''}>язык вступительных испытаний</span>
+                          <span className={'font-extrabold'}>РУССКИЙ</span>
+                      </div>
+                      <div className={'flex flex-col'}>
+                          <span className={'font-bold'}>место сдачи вступительных испытаний с использованием дистанционных технологий</span>
+                          <input className={'w-full'} type={"text"}/>
+                      </div>
+                  </div>
+
+
+                  <div className={'w-full flex flex-col text-xs mt-4'}>
+                      <div className={'flex items-center'}>
+                          <span className={'font-bold'}>Имею особое право на поступление в вуз</span>
+                          <div className={'flex gap-5 items-center ml-36'}>
+                              <label className={'flex items-center'}>
+                                  <input className={'p-2'} type={'checkbox'}/>
+                                  ДА
+                              </label>
+                              <label className={'flex items-center'}>
+                                  <input className={'p-2'} type={'checkbox'}/>
+                                  НЕТ
+                              </label>
+                          </div>
+                      </div>
+
+                      <ul className={'flex flex-col text-xs'}>
+                          <li className={'flex gap-1 items-center'}>
+                              <input type={"checkbox"}/>
+                              <span>– как ребенок-сирота или как ребенок, оставшийся без попечения родителей</span>
+                          </li>
+                          <li className={'flex gap-1 items-center'}>
+                              <input type={"checkbox"}/>
+                              <span>– как ребенок-инвалид, инвалид I или II группы, инвалид с детства</span>
+                          </li>
+                          <li className={'flex gap-1 items-center'}>
+                              <input type={"checkbox"}/>
+                              <span>– иная категория</span>
+                          </li>
+                      </ul>
+                      <div className={'w-full flex items-center gap-1'}>
+                            <span className={'w-2/6'}>если ДА, указать основание</span>
+                            <input className={'w-4/6'} type={"text"}/>
+                      </div>
+
+                  </div>
 
               </div>
           </form>
