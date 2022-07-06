@@ -3,18 +3,68 @@ import Image from 'next/image'
 import {useState} from "react";
 
 export default function Home() {
+    let godSdachi = 0
     const [select,setSelect] = useState('ДИЗАЙН');
+    const [selectDesignCourses,setSelectDesignCourses] = useState();
+
     const [level,setLevel] = useState();
     const [study,setStudy] = useState();
-    // const [study_level,setStudy_level] = useState('очная');
-    // const [isStudy,setIsStudy] = useState(false);
+
+    const [middleName,setMiddleName] = useState()
+    const [name,setName] = useState();
+    const [thirdName,setThirdName]= useState();
+    const [gender,setGender]= useState();
+    const [birthday,setBirthday] = useState();
+    const [doc,setDoc] = useState();
+    const [snils,setSnils] = useState();
+    const [seria,setSeria] = useState();
+    const [nomer,setNomer] = useState();
+    const [kemvidan,setKemvidan] = useState();
+    const [grajdanstvo,setGrajdanstvo] = useState();
+    const [inie,setInit] = useState();
+    const [country,setCountry] = useState()
+    const [resp,setRespt] = useState();
+    const [rajon,setRajon] = useState();
+    const [city,setCity] = useState();
+    const [street,setStreet] = useState();
+    const [home,setHome] = useState();
+    const [corpus,setCorpus] = useState();
+    const [kv,setKv] = useState();
+    const [phone,setPhone] = useState();
+    const [email,setEmail] = useState();
+
+    /* Прошу засчитать в качестве результатов вступительных экзаменов результаты ЕГЭ: */
+
+    const [godSdachi1,SETgodSdachi0] = useState();
+    const [godSdachi2,SETgodSdachi1] = useState();
+    const [godSdachi3,SETgodSdachi2] = useState();
+
+    const [bal1,setBal1] = useState();
+    const [bal2,setBal2] = useState();
+    const [bal3,setBal3] = useState();
+
+    /* Прошу засчитать в качестве результатов вступительных экзаменов результаты олимпиады: */
+
+
+
+
+
 
 
     const handleSelect = (e) => {
         setSelect(e.target.value)
-        console.log(select)
     }
-
+    const handleDesignCourses = (e) => {
+        setSelectDesignCourses(e.target.value)
+    }
+    const handleSubjectInput = (e) => {
+        const target = e.target;
+        const value = target.value;
+        console.log(value)
+        const name = target.name;
+        `SETgodSdachi${name}`(value)
+        console.log(godSdachi1)
+    }
     const handleRadioStudy = (e) => {
         setStudy(e.target.value)
     }
@@ -23,19 +73,29 @@ export default function Home() {
         setLevel(e.target.value)
     }
 
-    // const [discipline,setDiscipline] = useState()
 
     const design = {
        way: '54.03.01 ДИЗАЙН',
-       subject: ['литература','русский язык']
+       subject: [
+           {name: 'литература'},
+           {name: 'русский язык'},
+       ]
     }
     const reklama = {
         way: '42.03.01 РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ',
-        subject: ['русский язык','обществознание','иностранный язык']
+        subject: [
+            {name: 'русский язык'},
+            {name: 'обществознание'},
+            {name: 'иностранный язык'},
+        ]
     }
     const management = {
         way: '38.03.02 МЕНЕДЖМЕНТ',
-        subject: ['математика','русский язык','обществознание']
+        subject: [
+            {name: 'математика'},
+            {name: 'русский язык'},
+            {name: 'обществознание'},
+        ]
     }
   return (
     <div >
@@ -254,47 +314,106 @@ export default function Home() {
                                       select === 'МЕНЕДЖМЕНТ'
                                       ?  <label className={'flex  justify-center items-center gap-2  text-xs'}>очная<input onChange={handleRadioStudy} checked={study === 'очная'} value={'очная'}  type={"radio"}/></label>
                                       : null
-
+                                  }
+                                  {
+                                      select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
+                                      ? <>
+                                              <label className={'flex  justify-center items-center gap-2  text-xs'}>очная<input onChange={handleRadioStudy} checked={study === 'очная'} value={'очная'}  type={"radio"}/></label>
+                                              <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input onChange={handleRadioStudy} checked={study === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
+                                          </>
+                                      : null
                                   }
                               </td>
                               <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap">
                                   {
                                       select === 'ДИЗАЙН' ?
                                           level === 'БАКАЛАВРИАТ'
-                                          ? <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input onChange={handleRadioStudy} checked={study === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
+                                          ?  null
                                           :  <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input onChange={handleRadioStudy} checked={study === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
                                       : null
                                   }
                                   {
                                       select === 'МЕНЕДЖМЕНТ'
                                           ? <>
-                                                  <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input onChange={handleRadioStudy} checked={study === 'очно-заочная'} value={'очно-заочная'}  type={"checkbox"}/></label>
+                                                  <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input onChange={handleRadioStudy} checked={study === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
                                             </>
                                           : null
                                   }
+                                  {
+                                      select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
+                                      ? <>
+                                          <label className={'flex  justify-center items-center gap-2  text-xs'}>заочная<input onChange={handleRadioStudy} checked={study === 'заочная'} value={'заочная'}  type={"radio"}/></label>
+                                        </>
+                                      : null
+                                  }
                               </td>
                           </tr>
-                          <tr className="border-b  ">
-                              <td className="text-xs text-left w-full  font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap gap-1 flex flex-col  ">
-                                  {
-                                      select === 'ДИЗАЙН' ? <span className={'text-xls font-bold'}>Направление подготовки: {design.way} бакалавриат<br/></span>  : null
-                                  }
-                                  {
-                                      select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ' ? <span className={'text-xls font-bold'}>Направление подготовки: {reklama.way} бакалавриат<br/></span>  : null
-                                  }
-                                  {
-                                      select === 'МЕНЕДЖМЕНТ' ? <span className={'text-xls font-bold'}>Направление подготовки: {management.way} бакалавриат<br/></span> : null
-                                  }
-                                  <span>Направленность (профиль): <input className={' '} type={"text"}/></span>
+                          {
+                              level === 'МАГИСТРАТУРА'
+                              ? null
+                              : <tr className="border-b  ">
+                                      <td className="text-xs text-left w-full  font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap gap-1 flex flex-col  ">
+                                          {
+                                              select === 'ДИЗАЙН' ? <span className={'text-xls font-bold'}>Направление подготовки: {design.way} бакалавриат<br/></span>  : null
+                                          }
+                                          {
+                                              select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ' ? <span className={'text-xls font-bold'}>Направление подготовки: {reklama.way} бакалавриат<br/></span>  : null
+                                          }
+                                          {
+                                              select === 'МЕНЕДЖМЕНТ' ? <span className={'text-xls font-bold'}>Направление подготовки: {management.way} бакалавриат<br/></span> : null
+                                          }
+                                          <span>Направленность (профиль):
+                                              {
+                                                  select === 'ДИЗАЙН'
+                                                      ? <select value={selectDesignCourses} onChange={handleDesignCourses} className={'w-full text-center border rounded'}>
+                                                          <option value={'123'}>Выберете направление</option>
+                                                          <option value={'Архитектурная среда и дизайн'}>Архитектурная среда и дизайн</option>
+                                                          <option value={'Анимация'}>Анимация</option>
+                                                          <option value={'Графический дизайн'}>Графический дизайн</option>
+                                                          <option value={'Гейм-дизайн'}>Гейм-дизайн</option>
+                                                          <option value={'Дизайн костюма'}>Дизайн костюма</option>
+                                                          <option value={'Дизайн интерьера'}>Дизайн интерьера</option>
+                                                          <option value={'Иллюстрация в дизайне'}>Иллюстрация в дизайне</option>
+                                                          <option value={'Моушен-дизайн'}>Моушен-дизайн</option>
+                                                          <option value={'Цифровой дизайн'}>Цифровой дизайн</option>
+                                                          <option value={'Визуальные коммуникации'}>Визуальные коммуникации</option>
+                                                          <option value={'Менеджмент в дизайне и бизнеса'}>Менеджмент в дизайне и бизнеса</option>
+                                                      </select>
+                                                      :null
+                                              }
+                                              {
+                                                  select === 'МЕНЕДЖМЕНТ'
+                                                  ? <select value={selectDesignCourses} onChange={handleDesignCourses} className={'w-full text-center border rounded'}>
+                                                          <option value={'1'}>Выберете направление</option>
+                                                          <option value={'Маркетинг и реклама'}>Маркетинг и реклама</option>
+                                                          <option value={'Бренд-менеджмент'}>Бренд-менеджмент</option>
+                                                      </select>
+                                                  : null
+                                              }
+                                              {
+                                                  select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
+                                                      ? <select value={selectDesignCourses} onChange={handleDesignCourses} className={'w-full text-center border rounded'}>
+                                                          <option value={'3'}>Выберете направление</option>
+                                                          <option value={'Цифровые коммуникации'}>Цифровые коммуникации</option>
+                                                          <option value={'Цифровые коммуникации'}>Цифровые коммуникации</option>
+                                                      </select>
+                                                      : null
+                                              }
+                                  </span>
 
-                              </td>
-                          </tr>
-                          <tr className={'w-full'}>
-                              <td className="text-xs text-left w-full  font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap gap-1 flex flex-col ">
-                                  <span>Направление подготовки: 54.03.01 ДИЗАЙН магистратура</span> <br />
-                                  <span>Направленность (профиль): __________________________</span>
-                              </td>
-                          </tr>
+                                      </td>
+                                  </tr>
+                          }
+                          {
+                              level === 'БАКАЛАВРИАТ'
+                              ? null
+                              : <tr className={'w-full'}>
+                                      <td className="text-xs text-left w-full  font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap gap-1 flex flex-col ">
+                                          <span>Направление подготовки: 54.03.01 ДИЗАЙН магистратура</span> <br />
+                                          <span>Направленность (профиль): __________________________</span>
+                                      </td>
+                                  </tr>
+                          }
                           </tbody>
                       </table>
                   </div>
@@ -315,26 +434,61 @@ export default function Home() {
                           </tr>
                           </thead>
                       </table>
-                      <div className={'text-xs w-full mt-1 flex items-center justify-between'}>
-                          <div className={'flex gap-5 items-center w-7/12'}>
-                              <span className={'w-4/12'}>литерутара</span>
-                              <div className={'flex items-center gap-1 '}>
-                                  <label>год сдачи</label>
-                                  <input className={'border-t-0 border-l-0 border-r-0 '} type={'text'}/>
-                              </div>
-                          </div>
-                          <input className={'border pl-2 pr-2   w-1/12'}/>
-                      </div>
-                      <div className={'text-xs w-full mt-1 flex items-center justify-between'}>
-                          <div className={'flex gap-5 items-center w-7/12'}>
-                              <span className={'w-4/12'}>русский язык</span>
-                              <div className={'flex items-center gap-1'}>
-                                  <label>год сдачи</label>
-                                  <input className={'border-t-0 border-l-0 border-r-0 '} type={'text'}/>
-                              </div>
-                          </div>
-                          <input className={'border pl-2 pr-2   w-1/12'}/>
-                      </div>
+                      {
+                          select === 'ДИЗАЙН'
+                          ? design.subject.map((subject,idx)=>{
+                              return(
+                                  <div key={idx} className={'text-xs w-full mt-1 flex items-center justify-between'}>
+                                      <div className={'flex gap-5 items-center w-7/12'}>
+                                          <span className={'w-4/12'}>{subject.name}</span>
+                                          <div className={'flex items-center gap-1 '}>
+                                              <label>год сдачи</label>
+                                              <input className={'border-t-0 border-l-0 border-r-0 '} type={'text'}/>
+                                          </div>
+                                      </div>
+                                      <input className={'border pl-2 pr-2   w-1/12'}/>
+                                  </div>
+                              )
+                          })
+                          : null
+                      }
+                      {
+                          select === 'МЕНЕДЖМЕНТ'
+                              ? management.subject.map((subject,idx)=>{
+                                  return(
+                                      <div key={idx} className={'text-xs w-full mt-1 flex items-center justify-between'}>
+                                          <div className={'flex gap-5 items-center w-7/12'}>
+                                              <span className={'w-4/12'}>{subject.name}</span>
+                                              <div className={'flex items-center gap-1 '}>
+                                                  <label>год сдачи</label>
+                                                  <input name={`${idx}`} value={godSdachi1} onChange={handleSubjectInput} className={'border-t-0 border-l-0 border-r-0 '}/>
+                                              </div>
+                                          </div>
+                                          <input className={'border pl-2 pr-2   w-1/12'}/>
+                                      </div>
+                                  )
+                              })
+                              : null
+                      }
+                      {
+                          select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
+                              ? reklama.subject.map((subject,idx)=>{
+                                  return(
+                                      <div key={idx} className={'text-xs w-full mt-1 flex items-center justify-between'}>
+                                          <div className={'flex gap-5 items-center w-7/12'}>
+                                              <span className={'w-4/12'}>{subject.name}</span>
+                                              <div className={'flex items-center gap-1 '}>
+                                                  <label>год сдачи</label>
+                                                  <input className={'border-t-0 border-l-0 border-r-0 '} type={'text'}/>
+                                              </div>
+                                          </div>
+                                          <input className={'border pl-2 pr-2   w-1/12'}/>
+                                      </div>
+                                  )
+                              })
+                              : null
+                      }
+
                   </div>
                   {/*{*/}
                   {/*    result()*/}
@@ -471,7 +625,7 @@ export default function Home() {
                               </label>
                           </div>
                       </div>
-                      <div className={'flex w-full'}>
+                      <div className={'flex w-full mt-32'}>
                           <div className={'w-2/6'}>
                               <span>если ДА, указать основание</span>
                           </div>
