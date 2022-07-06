@@ -62,7 +62,9 @@ export default function Home() {
         const value = target.value;
         console.log(value)
         const name = target.name;
-        `SETgodSdachi${name}`(value)
+        // console.log(`SETgodSdachi${name}`[value])
+        console.log(SETgodSdachi0(value))
+        // `SETgodSdachi${name}`(value)
         console.log(godSdachi1)
     }
     const handleRadioStudy = (e) => {
