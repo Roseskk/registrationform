@@ -4,15 +4,19 @@ import {useState} from "react";
 
 export default function Home() {
     const [select,setSelect] = useState('ДИЗАЙН');
-    const [level,setLevel] = useState('БАКАЛАВРИАТ');
-    const [isLevel,setIsLevel] = useState(false);
-    const [study_level,setStudy_level] = useState('очная');
-    const [isStudy,setIsStudy] = useState(false);
+    const [level,setLevel] = useState();
+    // const [isLevel,setIsLevel] = useState(false);
+    // const [study_level,setStudy_level] = useState('очная');
+    // const [isStudy,setIsStudy] = useState(false);
 
 
     const handleSelect = (e) => {
         setSelect(e.target.value)
         console.log(select)
+    }
+
+    const handleLevel = (e) => {
+        setLevel(e.target.value)
     }
 
     // const [discipline,setDiscipline] = useState()
@@ -210,13 +214,13 @@ export default function Home() {
                               <th scope="col" className="text-xs font-bold  text-gray-900 border-r">
                                   <label className={'flex  justify-center items-center gap-2  text-xs'}>
                                       БАКАЛАВРИАТ
-                                      <input onClick={(event)=> { setIsLevel(!isLevel); isLevel ? null :  setIsStudy(false);  isLevel ? setLevel(event.target.value) : null }} checked={isLevel}  value={level} type={"checkbox"}/>
+                                      <input onChange={handleLevel} checked={level === 'БАКАЛАВРИАТ'} value={'БАКАЛАВРИАТ'} type={"radio"}/>
                                   </label>
                               </th>
                               <th scope="col" className="text-xs font-bold  text-gray-900  border-r">
                                   <label className={'flex  justify-center items-center  gap-2 text-xs'}>
                                       МАГИСТРАТУРА
-                                      <input onClick={(event)=>{setIsStudy(!isStudy); isStudy ? null : setIsLevel(false);  isStudy ? setStudy_level(event.target.value) : null }} checked={isStudy}  value={study_level} type={"checkbox"}/>
+                                      <input onChange={handleLevel} checked={level === 'МАГИСТРАТУРА'}  value={'МАГИСТРАТУРА'} type={"radio"}/>
                                   </label>
                               </th>
                           </tr>
