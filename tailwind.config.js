@@ -9,7 +9,8 @@ module.exports = {
         pageW: '1600px'
       },
       width: {
-        a4: '210mm'
+        a4: '210mm',
+        s: '12.6%'
       },
       height:{
         a4: '297mm'
@@ -17,7 +18,7 @@ module.exports = {
       fontSize:{
         xxs: '0.4rem',
         x2s: '0.4rem',
-        xls: '0.6rem'
+        xls: '0.63rem'
       }
     },
   },
