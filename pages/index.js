@@ -4,6 +4,11 @@ import {useState} from "react";
 
 export default function Home() {
     const [select,setSelect] = useState('ДИЗАЙН');
+    const [level,setLevel] = useState('БАКАЛАВРИАТ');
+    const [isLevel,setIsLevel] = useState(false);
+    const [study_level,setStudy_level] = useState('очная');
+    const [isStudy,setIsStudy] = useState(false);
+
 
     const handleSelect = (e) => {
         setSelect(e.target.value)
@@ -23,107 +28,6 @@ export default function Home() {
     const management = {
         way: '38.03.02 МЕНЕДЖМЕНТ',
         subject: ['математика','русский язык','обществознание']
-    }
-    const result = () => {
-
-        return(
-            <>
-            <div className={'w-full'}>
-                <table className="w-full border text-center">
-                    <caption className={'text-xs border'}>КОНКУРС</caption>
-                    <thead className="border-b">
-                    <tr>
-                        <th scope="col" className="text-xs font-bold  text-gray-900 border-r">
-                            Уровень образования
-                        </th>
-                        <th scope="col" className="text-xs font-bold  text-gray-900 border-r">
-                            <label className={'flex  justify-center items-center gap-2  text-xs'}>
-                                БАКАЛАВРИАТ
-                                <input type={"checkbox"}/>
-                            </label>
-                        </th>
-                        <th scope="col" className="text-xs font-bold  text-gray-900  border-r">
-                            <label className={'flex  justify-center items-center  gap-2 text-xs'}>
-                                МАГИСТРАТУРА
-                                <input type={"checkbox"}/>
-                            </label>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr className="border-b">
-                        <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap border-r">
-                            ФОРМА ОБУЧЕНИЯ
-                        </td>
-                        <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap border-r">
-                            <label className={'flex  justify-center items-center gap-2  text-xs'}>
-                                очная
-                                <input type={"checkbox"}/>
-                            </label>
-                        </td>
-                        <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap">
-                            <label className={'flex  justify-center items-center gap-2  text-xs'}>
-                                очно-заочная
-                                <input type={"checkbox"}/>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr className="border-b ">
-                        <td className="text-xs text-left w-full  font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap gap-1 flex flex-col ">
-                            <span>Направление подготовки: 54.03.01 ДИЗАЙН бакалавриат</span> <br />
-                            <span>Направленность (профиль): <input className={' '} type={"text"}/></span>
-
-                        </td>
-                    </tr>
-                    <tr className={'w-full'}>
-                        <td className="text-xs text-left w-full  font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap gap-1 flex flex-col ">
-                            <span>Направление подготовки: 54.03.01 ДИЗАЙН магистратура</span> <br />
-                            <span>Направленность (профиль): __________________________</span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        <div className={'w-full flex flex-col gap-0'}>
-            <span className={'font-bold text-xs pl-3'}>Прошу засчитать в качестве результатов вступительных экзаменов результаты ЕГЭ:</span>
-            <table className="w-full border text-center">
-                <thead className="border-b w-full">
-                <tr className={'w-full'}>
-                    <th scope="col" className="text-xs font-bold w-1/6  text-gray-900 border-r">
-                        Предметы
-                    </th>
-                    <th scope="col" className="text-xs font-bold w-4/6  text-gray-900 border-r">
-
-                    </th>
-                    <th scope="col" className="text-xs font-bold w-1/6  text-gray-900  border-r">
-                        Баллы
-                    </th>
-                </tr>
-                </thead>
-            </table>
-            <div className={'text-xs w-full mt-1 flex items-center justify-between'}>
-                <div className={'flex gap-5 items-center w-7/12'}>
-                    <span className={'w-4/12'}>литерутара</span>
-                    <div className={'flex items-center gap-1 '}>
-                        <label>год сдачи</label>
-                        <input className={'border-t-0 border-l-0 border-r-0 '} type={'text'}/>
-                    </div>
-                </div>
-                <input className={'border pl-2 pr-2   w-1/12'}/>
-            </div>
-            <div className={'text-xs w-full mt-1 flex items-center justify-between'}>
-                <div className={'flex gap-5 items-center w-7/12'}>
-                    <span className={'w-4/12'}>русский язык</span>
-                    <div className={'flex items-center gap-1'}>
-                        <label>год сдачи</label>
-                        <input className={'border-t-0 border-l-0 border-r-0 '} type={'text'}/>
-                    </div>
-                </div>
-                <input className={'border pl-2 pr-2   w-1/12'}/>
-            </div>
-        </div>
-            </>
-        )
     }
   return (
     <div >
@@ -306,13 +210,13 @@ export default function Home() {
                               <th scope="col" className="text-xs font-bold  text-gray-900 border-r">
                                   <label className={'flex  justify-center items-center gap-2  text-xs'}>
                                       БАКАЛАВРИАТ
-                                      <input value={'БАКАЛАВРИАТ'} type={"checkbox"}/>
+                                      <input onClick={(event)=> { setIsLevel(!isLevel); isLevel ? null :  setIsStudy(false);  isLevel ? setLevel(event.target.value) : null }} checked={isLevel}  value={level} type={"checkbox"}/>
                                   </label>
                               </th>
                               <th scope="col" className="text-xs font-bold  text-gray-900  border-r">
                                   <label className={'flex  justify-center items-center  gap-2 text-xs'}>
                                       МАГИСТРАТУРА
-                                      <input value={'МАГИСТРАТУРА'} type={"checkbox"}/>
+                                      <input onClick={(event)=>{setIsStudy(!isStudy); isStudy ? null : setIsLevel(false);  isStudy ? setStudy_level(event.target.value) : null }} checked={isStudy}  value={study_level} type={"checkbox"}/>
                                   </label>
                               </th>
                           </tr>
