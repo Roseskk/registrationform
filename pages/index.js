@@ -342,6 +342,93 @@ export default function Home() {
                             <span className={'w-2/6'}>если ДА, указать основание</span>
                             <input className={'w-4/6'} type={"text"}/>
                       </div>
+                  </div>
+
+                  <div className={'w-full text-xs flex flex-col mt-1'}>
+                      <div className={'flex gap-8'}>
+                         <span className={'font-bold'}>Нуждаюсь в необходимости создания специальных условий</span>
+                          <div className={'flex gap-2 items-center'}>
+                              <lable className={'flex items-center gap-1'}>
+                                  <input type={"checkbox"}/>
+                                  ДА
+                              </lable>
+                              <lable className={'flex items-center gap-1'}>
+                                  <input type={"checkbox"}/>
+                                  НЕТ
+                              </lable>
+                          </div>
+                      </div>
+                      <span className={'font-bold'}>при проведении вступительных испытаний в связи<br/> с ограниченными возможностями здоровья или инвалидностью</span>
+                      <div className={'w-full flex'}>
+                          <div className={'w-4/12'}>
+                              <span >если ДА, указать специальные условия</span>
+                          </div>
+                          <div className={'w-8/12'}>
+                              <input className={'w-full'} type={'text'}/>
+                          </div>
+                      </div>
+                      <div className={'flex  w-full flex-wrap mt-1'}>
+                          <span className={'w-4/12'}>перечень вступительных испытаний</span>
+                          <div className={'w-8/12 flex flex-wrap'}>
+                              <input className={'w-1/3'} type={"text"} />
+                              <input className={'w-1/3'} type={"text"} />
+                              <input className={'w-1/3'} type={"text"} />
+                          </div>
+                      </div>
+                  </div>
+
+                  <div className={'w-full mt-1 flex-col flex text-xs'}>
+                      <div className={'w-full flex gap-10'}>
+                          <span className={'font-bold'}>
+                              Имею преимущественное право при зачислении в вуз
+                          </span>
+                          <div className={'flex gap-2'}>
+                              <label className={'flex items-center gap-1'}>
+                                  <input type={"checkbox"}/>
+                                  ДА
+                              </label>
+                              <label className={'flex items-center gap-1'}>
+                                  <input type={"checkbox"}/>
+                                  Нет
+                              </label>
+                          </div>
+                      </div>
+                      <div className={'flex w-full'}>
+                          <div className={'w-2/6'}>
+                              <span>если ДА, указать основание</span>
+                          </div>
+                          <div className={'w-4/6'}>
+                              <input className={'w-full'} type={"text"}/>
+                          </div>
+                      </div>
+
+                      <div className={'w-full flex gap-10'}>
+                          <span className={'font-bold'}>
+                              Имею индивидуальные достижения
+                          </span>
+                          <div className={'flex gap-2 mt-1'}>
+                              <label className={'flex items-center gap-1'}>
+                                  <input type={"checkbox"}/>
+                                  ДА
+                              </label>
+                              <label className={'flex items-center gap-1'}>
+                                  <input type={"checkbox"}/>
+                                  Нет
+                              </label>
+                          </div>
+                      </div>
+
+                      <div className={'flex w-full mt-1'}>
+                            <span className={'w-2/6'}>если ДА, указать сведения о них</span>
+                            <div className={'flex flex-col w-4/6 gap-1'}>
+                                <input className={'w-full'} type={"text"}/>
+                                <input className={'w-full'} type={"text"}/>
+                                <input className={'w-full'} type={"text"}/>
+                            </div>
+                      </div>
+                  </div>
+
+                  <div className={'flex flex-col w-full'}>
 
                   </div>
 
