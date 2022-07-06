@@ -5,7 +5,7 @@ import {useState} from "react";
 export default function Home() {
     const [select,setSelect] = useState('ДИЗАЙН');
     const [level,setLevel] = useState();
-    // const [isLevel,setIsLevel] = useState(false);
+    const [study,setStudy] = useState();
     // const [study_level,setStudy_level] = useState('очная');
     // const [isStudy,setIsStudy] = useState(false);
 
@@ -13,6 +13,10 @@ export default function Home() {
     const handleSelect = (e) => {
         setSelect(e.target.value)
         console.log(select)
+    }
+
+    const handleRadioStudy = (e) => {
+        setStudy(e.target.value)
     }
 
     const handleLevel = (e) => {
@@ -219,8 +223,14 @@ export default function Home() {
                               </th>
                               <th scope="col" className="text-xs font-bold  text-gray-900  border-r">
                                   <label className={'flex  justify-center items-center  gap-2 text-xs'}>
-                                      МАГИСТРАТУРА
-                                      <input onChange={handleLevel} checked={level === 'МАГИСТРАТУРА'}  value={'МАГИСТРАТУРА'} type={"radio"}/>
+                                      {
+                                          select === 'МЕНЕДЖМЕНТ' || select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
+                                          ? null
+                                          : <>
+                                                  МАГИСТРАТУРА
+                                                  <input onChange={handleLevel} checked={level === 'МАГИСТРАТУРА'}  value={'МАГИСТРАТУРА'} type={"radio"}/>
+                                              </>
+                                      }
                                   </label>
                               </th>
                           </tr>
@@ -231,16 +241,37 @@ export default function Home() {
                                   ФОРМА ОБУЧЕНИЯ
                               </td>
                               <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap border-r">
-                                  <label className={'flex  justify-center items-center gap-2  text-xs'}>
-                                      очная
-                                      <input value={'очная'} type={"checkbox"}/>
-                                  </label>
+                                  {
+                                      select === 'ДИЗАЙН'
+                                      ?
+                                      level === 'МАГИСТРАТУРА'
+                                          ? null
+                                          : <label className={'flex  justify-center items-center gap-2  text-xs'}>очная<input onChange={handleRadioStudy} checked={study === 'очная'} value={'очная'}  type={"radio"}/></label>
+
+                                      :null
+                                  }
+                                  {
+                                      select === 'МЕНЕДЖМЕНТ'
+                                      ?  <label className={'flex  justify-center items-center gap-2  text-xs'}>очная<input onChange={handleRadioStudy} checked={study === 'очная'} value={'очная'}  type={"radio"}/></label>
+                                      : null
+
+                                  }
                               </td>
                               <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap">
-                                  <label className={'flex  justify-center items-center gap-2  text-xs'}>
-                                      очно-заочная
-                                      <input value={'очно-заочная'} type={"checkbox"}/>
-                                  </label>
+                                  {
+                                      select === 'ДИЗАЙН' ?
+                                          level === 'БАКАЛАВРИАТ'
+                                          ? <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input onChange={handleRadioStudy} checked={study === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
+                                          :  <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input onChange={handleRadioStudy} checked={study === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
+                                      : null
+                                  }
+                                  {
+                                      select === 'МЕНЕДЖМЕНТ'
+                                          ? <>
+                                                  <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input onChange={handleRadioStudy} checked={study === 'очно-заочная'} value={'очно-заочная'}  type={"checkbox"}/></label>
+                                            </>
+                                          : null
+                                  }
                               </td>
                           </tr>
                           <tr className="border-b  ">
