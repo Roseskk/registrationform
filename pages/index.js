@@ -671,7 +671,7 @@ export default function Home() {
                                   ДА
                               </lable>
                               <lable className={'flex items-center gap-1'}>
-                                  <input name={'specialTest'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.specialTest === 'нет'} value={'нет'} type={"checkbox"}/>
+                                  <input name={'specialTest'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.specialTest === 'нет'} value={'нет'} type={"radio"}/>
                                   НЕТ
                               </lable>
                           </div>
@@ -746,12 +746,106 @@ export default function Home() {
                       </div>
                   </div>
 
-                  <div className={'flex flex-col w-full'}>
+                  <div className={'flex w-full flex-col gap-2 text-xs'}>
+                      <div  className={'flex'}>
+                          <span className={'font-bold'}>Сведения о том, что поступающий является лицом, признанным гражданином, или лицом, указанным в части 3.1 ст.5 или ст.6 Федерального закона No 84 -ФЗ
+                          </span>
+                          <lable className={'font-bold flex items-center gap-1'}>
+                              <input name={'zakon'}  type={"checkbox"}/>
+                              ДА
+                          </lable>
+                      </div>
+                      <div className={'w-full flex flex-col'}>
+                          <input name={'nameEDU'} className={'placeholder:text-black placeholder:font-bold pt-1 pb-1'} placeholder={'Наименование учебного заведения:'}/>
+                          <div className={'flex gap-3 mt-1'}>
+                              <span className={'font-bold'}>Окончил(а) в </span>
+                              <input type={"number"}/>
+                              <span className={'font-normal'}>году</span>
+                          </div>
+                      </div>
+                      <div className={'flex flex-col w-full'}>
+                          <div className={'flex w-full justify-between items-center '}>
+                              <span><strong>Документ об образовании:</strong> серия № </span>
+                              <input className={'w-3/12'} type={"number"}/>
+                              <span>выдан</span>
+                              <div className={'w-3/12'}>
+                                  <DatePicker className={''} />
+                              </div>
+                          </div>
+                          <div className={'flex flex-col w-full mt-1 gap-1'}>
+                              <label className={'flex items-center gap-1'}>
+                                  <input type={"radio"}/>
+                                  аттестат о среднем общем образовании Российской Федерации
+                              </label>
+                              <label className={'flex items-center gap-1'}>
+                                  <input type={"radio"}/>
+                                  диплом о среднем профессиональном образовании Российской Федерации
+                              </label>
+                              <label className={'flex items-center gap-1'}>
+                                  <input type={"radio"}/>
+                                  диплом о высшем образовании Российской Федерации
+                              </label>
+                              <label className={'flex items-center gap-1'}>
+                                  <input type={"radio"}/>
+                                  документ об образовании иностранного государства
+                              </label>
+                              <label className={'flex items-center gap-1'}>
+                                  <input type={"radio"}/>
+                                  иной документ об образовании
+                              </label>
 
+                              <label className={'flex items-center justify-between gap-1'}>
+                                  <span className={'font-bold'}>если иной, указать тип</span>
+                                  <input className={'w-9/12'} type={"text"}/>
+                              </label>
+                          </div>
+                      </div>
+
+                      <div className={'flex flex-col'}>
+                           <span className={'font-bold'}>Являюсь выпускником подготовительных курсов данного учебного заведения:</span>
+                           <div className={'flex gap-3 font-bold'}>
+                              <label className={'flex items-center gap-1'}>
+                                  ДА
+                                  <input type={"radio"}/>
+                                  8 мес;
+                              </label>
+                               <label className={'flex items-center gap-1'}>
+                                   ДА
+                                   <input type={"radio"}/>
+                                   6 мес;
+                               </label>
+                               <label className={'flex items-center gap-1'}>
+                                   ДА
+                                   <input type={"radio"}/>
+                                   4 мес;
+                               </label>
+                               <label className={'flex items-center gap-1'}>
+                                   ДА
+                                   <input type={"radio"}/>
+                                   летний курс
+                               </label>
+                               <label className={'flex items-center gap-1 ml-10'}>
+                                   НЕТ
+                                   <input type={"radio"}/>
+                               </label>
+                           </div>
+
+                          <div className={'flex flex-col w-full mt-3 '}>
+                              <div className={'flex flex-col gap-2'}>
+                                  <div className={'flex justify-between'}>
+                                      <span className={'font-bold'}>С отсутствием у вуза общежития ознакомлен(а)</span>
+                                      <span>_________________Подпись</span>
+                                  </div>
+                                  <div className={'flex justify-between'}>
+                                      <span className={'font-bold'}>Подтверждаю подачу заявлений в не более чем пять вузов, три направления (специальности</span>
+                                      <span>_________________Подпись</span>
+                                  </div>
+                                  <span className={'font-bold'}>Ознакомлен(а)</span>
+                              </div>
+                          </div>
+                      </div>
                   </div>
-
               </div>
-              <button>Ok</button>
           </form>
       </div>
     </div>
