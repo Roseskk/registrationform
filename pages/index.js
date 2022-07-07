@@ -1,37 +1,67 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import {useState} from "react";
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Home() {
-    let godSdachi = 0
+
     const [select,setSelect] = useState('ДИЗАЙН');
     const [selectDesignCourses,setSelectDesignCourses] = useState();
 
     const [level,setLevel] = useState();
     const [study,setStudy] = useState();
 
-    const [middleName,setMiddleName] = useState()
-    const [name,setName] = useState();
-    const [thirdName,setThirdName]= useState();
-    const [gender,setGender]= useState();
-    const [birthday,setBirthday] = useState();
-    const [doc,setDoc] = useState();
-    const [snils,setSnils] = useState();
-    const [seria,setSeria] = useState();
-    const [nomer,setNomer] = useState();
-    const [kemvidan,setKemvidan] = useState();
-    const [grajdanstvo,setGrajdanstvo] = useState();
-    const [inie,setInit] = useState();
-    const [country,setCountry] = useState()
-    const [resp,setRespt] = useState();
-    const [rajon,setRajon] = useState();
-    const [city,setCity] = useState();
-    const [street,setStreet] = useState();
-    const [home,setHome] = useState();
-    const [corpus,setCorpus] = useState();
-    const [kv,setKv] = useState();
     const [phone,setPhone] = useState();
     const [email,setEmail] = useState();
+
+    /* ФИО СНИЛС ПОЛ ДР */
+
+    const [stateFIO,setStateFIO] = useState({
+        middleName : '',
+        name: '',
+        thirdName: '',
+        gender: '',
+        snils: '',
+    });
+
+    /* ПАСПОРТНЫЕ ДАННЫЕ */
+    const [statePassport,setStatePassport] = useState({
+        name: '',
+        seria: '',
+        nomer: '',
+        kemvidan: '',
+        grajdanstvo: '',
+        inie: '',
+        country: '',
+        resp: '',
+        rajon: '',
+        city: '',
+        street: '',
+        house: '',
+        corpus: '',
+        kv: ''
+    });
+
+    /* ТЕЛЕФОН ПОЧТА */
+    const [stateContacts,setStateContacts] = useState({
+        phone: '',
+        email: ''
+    })
+
+    /* Уровень образования форма обучания направление */
+    const [stateStudyCourses,setStateStudyCourses] = useState({
+        course: 'ДИЗАЙН',
+        level:'',
+        studyTime:'',
+        wayBC: ''
+    })
+
+
+    /* ДАТЫ */
+    const [birthday,setBirthday] = useState(new Date());
+    const [passportDate,setPassportDate] = useState(new Date());
+
 
     /* Прошу засчитать в качестве результатов вступительных экзаменов результаты ЕГЭ: */
 
@@ -46,10 +76,41 @@ export default function Home() {
     /* Прошу засчитать в качестве результатов вступительных экзаменов результаты олимпиады: */
 
 
+    /* FIO */
+    const handleFioInput = (e) => {
+        setStateFIO({
+            ...stateFIO,
+            [e.target.name] : e.target.value
+        })
+    }
+
+    /* PASSPORT */
+    const handlePassportInput = (e) => {
+        setStatePassport({
+            ...statePassport,
+            [e.target.name] : e.target.value
+        })
+    }
 
 
+    /* CONTACTS */
 
+    const handleContactsInput = (e) => {
+        setStateContacts({
+            ...statePassport,
+            [e.target.name] : e.target.value
+        })
+    }
 
+    /* Уровень образования форма обучания направление */
+
+    const handleCourseForm = (e) => {
+        setStateStudyCourses({
+            ...stateStudyCourses,
+            [e.target.name] : e.target.value
+        })
+        console.log(stateStudyCourses)
+    }
 
     const handleSelect = (e) => {
         setSelect(e.target.value)
@@ -57,16 +118,46 @@ export default function Home() {
     const handleDesignCourses = (e) => {
         setSelectDesignCourses(e.target.value)
     }
+
+
     const handleSubjectInput = (e) => {
-        const target = e.target;
-        const value = target.value;
-        console.log(value)
-        const name = target.name;
-        // console.log(`SETgodSdachi${name}`[value])
-        console.log(SETgodSdachi0(value))
-        // `SETgodSdachi${name}`(value)
-        console.log(godSdachi1)
+        const name = e.target.name;
+        const value = e.target.value;
+        switch (name) {
+            case '1' : {
+                SETgodSdachi0(value)
+                return;
+            }
+            case '2' : {
+                SETgodSdachi1(value)
+                return;
+            }
+            case '3': {
+                SETgodSdachi2(value)
+                return;
+            }
+        }
     }
+
+    const handleScoreInput = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        switch (name) {
+            case '1' : {
+                setBal1(value)
+                return;
+            }
+            case '2' : {
+                setBal2(value)
+                return;
+            }
+            case '3': {
+                setBal3(value)
+                return;
+            }
+        }
+    }
+
     const handleRadioStudy = (e) => {
         setStudy(e.target.value)
     }
@@ -150,60 +241,59 @@ export default function Home() {
                   <div className={'w-4/6 flex flex-col gap-1 items-center'}>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Фамилия</label>
-                          <input className={'w-4/6 border uppercase'} />
+                          <input name={'middleName'} onChange={handleFioInput} value={stateFIO.middleName} className={'w-4/6 border uppercase'} />
                       </div>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Имя</label>
-                          <input className={'w-4/6 border uppercase'} />
+                          <input name={'name'} onChange={handleFioInput} value={stateFIO.name} className={'w-4/6 border uppercase'} />
                       </div>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Отчество</label>
-                          <input className={'w-4/6 border uppercase'} />
+                          <input name={'thirdName'} onChange={handleFioInput} value={stateFIO.thirdName} className={'w-4/6 border uppercase'} />
                       </div>
                   </div>
                   <div className={'w-2/6'}>
                     <div className={'flex justify-between items-center text-sm'}>
                         <h3>Пол</h3>
                         <lable className={'flex item gap-2'}>
-                            <input type={'checkbox'} />
+                            <input onChange={handleFioInput} name={'gender'}  checked={stateFIO.gender === 'мужской'} value={'мужской'} type={'radio'} />
                             мужской
                         </lable>
                         <lable className={'flex item gap-2'}>
-                            <input type={'checkbox'} />
+                            <input onChange={handleFioInput} name={'gender'} checked={stateFIO.gender === 'женский'} value={'женский'} type={'radio'} />
                             женский
                         </lable>
                     </div>
                     <div className={'flex mt-2 items-center gap-2'}>
                         <h2 className={'text-sm font-bold'}>СНИЛС</h2>
-                        <input className={'border'} type={'text'}/>
+                        <input onChange={handleFioInput} name={'snils'} value={stateFIO.snils} className={'border'} type={'text'}/>
                     </div>
                     <div className={'flex mt-2  text-xs gap-2'}>
                         <h2>Дата рождения</h2>
-                        <input className={'border'} type={'text'}/>
+                        <DatePicker selected={birthday} onChange={(date)=>setBirthday(date)} />
                     </div>
                   </div>
                   <div className={'flex flex-col text-sm w-full'}>
                       <div className={'flex gap-6'}>
                           <h2 className={'font-bold'}>Документ, удостоверящий личность</h2>
-                          <input placeholder={'Паспорт'} className={'border'} type={"text"}/>
+                          <input name={'name'} onChange={handlePassportInput} value={statePassport.name} placeholder={'Паспорт'} className={'border'} type={"text"}/>
                       </div>
                       <div className={'w-full mt-2 flex items-center ml-10 '}>
                           <div className={'flex gap-2'}>
                               <h3>серия</h3>
-                              <input className={'border'} type={'number'}/>
+                              <input name={'seria'} onChange={handlePassportInput} value={statePassport.seria} className={'border'} type={'number'}/>
                               <h3>№</h3>
-                              <input className={'border'} type={"number"}/>
+                              <input name={'nomer'} onChange={handlePassportInput} value={statePassport.nomer} className={'border'} type={"number"}/>
                           </div>
                           <div className={'flex-wrap flex gap-2 ml-20'}>
                              <h3>когда выдан</h3>
-                             <input className={'border'} type={"text"}/>
+                              <DatePicker selected={passportDate} onChange={(date)=>setPassportDate(date)} />
                           </div>
                       </div>
                       <div className={'flex mt-2 '}>
                           <label className={'w-s'}>кем выдан</label>
                           <div className={'flex flex-col gap-2 w-full'}>
-                              <input className={'w-full border'} type={"text"}/>
-                              <input className={'w-full border'} type={"text"}/>
+                              <textarea name={'kemvidan'} onChange={handlePassportInput} value={statePassport.kemvidan} className={'w-full border border-black'} />
                           </div>
                       </div>
                   </div>
@@ -211,58 +301,58 @@ export default function Home() {
                   <div className={'w-full flex flex-col mt-2'}>
                       <div className={'flex items-center gap-2'}>
                           <h2 className={'text-xs'}>Гражданство</h2>
-                          <input className={'border'} type={"text"}/>
+                          <input name={'grajdanstvo'} onChange={handlePassportInput} value={statePassport.grajdanstvo} className={'border'} type={"text"}/>
                           <h2 className={'text-sm'}>Иные сведения о гражданстве</h2>
-                          <input className={'border'} type={"text"}/>
+                          <input name={'inie'} onChange={handlePassportInput} value={statePassport.inie} className={'border'} type={"text"}/>
                       </div>
                   </div>
                   <div className={'w-full ml-24 mt-2 flex flex-col gap-1'}>
                       <div className={'flex w-full text-x2s items-center'}>
                           <h3 className={'w-1/5'}>страна</h3>
-                          <input className={'w-4/5 p-1'} type={"text"}/>
+                          <input name={'country'} onChange={handlePassportInput} value={statePassport.country} className={'w-4/5 p-1'} type={"text"}/>
                       </div>
                       <div className={'flex w-full text-x2s items-center'}>
                           <h3 className={'w-1/5'}>республика / область</h3>
-                          <input className={'w-4/5 p-1'} type={"text"}/>
+                          <input name={'resp'} onChange={handlePassportInput} value={statePassport.resp} className={'w-4/5 p-1'} type={"text"}/>
                       </div>
                       <div className={'flex w-full text-x2s items-center'}>
                           <h3 className={'w-1/5'}>район</h3>
-                          <input className={'w-4/5 p-1'} type={"text"}/>
+                          <input name={'rajon'} onChange={handlePassportInput} value={statePassport.rajon} className={'w-4/5 p-1'} type={"text"}/>
                       </div>
                       <div className={'flex w-full text-x2s items-center'}>
                           <h3 className={'w-1/5'}>город/нас.пункт/индекс</h3>
-                          <input className={'w-4/5 p-1'} type={"text"}/>
+                          <input name={'city'} onChange={handlePassportInput} value={statePassport.city} className={'w-4/5 p-1'} type={"text"}/>
                       </div>
                       <div className={'flex w-full text-x2s items-center'}>
                           <h3 className={'w-1/5'}>улица</h3>
-                          <input className={'w-4/5 p-1'} type={"text"}/>
+                          <input name={'street'} onChange={handlePassportInput} value={statePassport.street} className={'w-4/5 p-1'} type={"text"}/>
                       </div>
 
                       <div className={'flex w-full text-x2s items-center'}>
                           <div className={'flex gap-20 items-center'}>
                               <h3 className={'w-1/5'}>дом</h3>
-                              <input className={'w-1/5 '} type={"text"}/>
+                              <input name={'house'} onChange={handlePassportInput} value={statePassport.house} className={'w-1/5 '} type={"text"}/>
                           </div>
                           <div className={'flex gap-1 items-center'}>
                               <h3 className={'w-2/5'}>корпус</h3>
-                              <input className={'w-1/5 '} type={"text"}/>
+                              <input name={'corpus'} onChange={handlePassportInput} value={statePassport.corpus} className={'w-1/5 '} type={"text"}/>
                           </div>
                           <div className={'flex gap-1 items-center'}>
                               <h3 className={'w-2/5'}>квартира</h3>
-                              <input className={'w-1/5 '} type={"text"}/>
+                              <input name={'kv'} onChange={handlePassportInput} value={statePassport.kv} className={'w-1/5 '} type={"text"}/>
                           </div>
                       </div>
                   </div>
                   <div className={'flex w-full text-xs gap-5 mt-2'}>
                       <h2 className={''}>Телефон</h2>
-                      <input className={'w-2/6'} type={"number"} />
+                      <input name={'phone'} onChange={handleContactsInput} value={stateContacts.phone} className={'w-2/6'} type={"number"} />
                       <h2 className={''}>E-mail</h2>
-                      <input className={'w-2/6'} type={"email"}/>
+                      <input name={'email'} onChange={handleContactsInput} value={stateContacts.email} className={'w-2/6'} type={"email"}/>
                   </div>
                   <div className={'flex items-center justify-center text-xs w-full mt-4'}>
                       <p className={'text-center'}><strong>Прошу допустить меня</strong> к участию в конкурсе на зачисление и к вступительным испытаниям<br/>
                           по направлению подготовки <strong>
-                              <select className={'border w-fit text-center'} value={select} onChange={handleSelect}  >
+                              <select name={'course'} className={'border w-fit text-center'} value={stateStudyCourses.course} onChange={handleCourseForm}  >
                                   <option value={'ДИЗАЙН'}>ДИЗАЙН</option>
                                   <option value={'МЕНЕДЖМЕНТ'}>МЕНЕДЖМЕНТ</option>
                                   <option value={'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'}>РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ</option>
@@ -280,7 +370,7 @@ export default function Home() {
                               <th scope="col" className="text-xs font-bold  text-gray-900 border-r">
                                   <label className={'flex  justify-center items-center gap-2  text-xs'}>
                                       БАКАЛАВРИАТ
-                                      <input onChange={handleLevel} checked={level === 'БАКАЛАВРИАТ'} value={'БАКАЛАВРИАТ'} type={"radio"}/>
+                                      <input name={'level'} onChange={handleCourseForm} checked={stateStudyCourses.level === 'БАКАЛАВРИАТ'} value={'БАКАЛАВРИАТ'} type={"radio"}/>
                                   </label>
                               </th>
                               <th scope="col" className="text-xs font-bold  text-gray-900  border-r">
@@ -290,7 +380,7 @@ export default function Home() {
                                           ? null
                                           : <>
                                                   МАГИСТРАТУРА
-                                                  <input onChange={handleLevel} checked={level === 'МАГИСТРАТУРА'}  value={'МАГИСТРАТУРА'} type={"radio"}/>
+                                                  <input name={'level'} onChange={handleCourseForm} checked={stateStudyCourses.level === 'МАГИСТРАТУРА'}  value={'МАГИСТРАТУРА'} type={"radio"}/>
                                               </>
                                       }
                                   </label>
@@ -304,70 +394,70 @@ export default function Home() {
                               </td>
                               <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap border-r">
                                   {
-                                      select === 'ДИЗАЙН'
+                                      stateStudyCourses.course === 'ДИЗАЙН'
                                       ?
-                                      level === 'МАГИСТРАТУРА'
+                                      stateStudyCourses.level === 'МАГИСТРАТУРА'
                                           ? null
-                                          : <label className={'flex  justify-center items-center gap-2  text-xs'}>очная<input onChange={handleRadioStudy} checked={study === 'очная'} value={'очная'}  type={"radio"}/></label>
+                                          : <label className={'flex  justify-center items-center gap-2  text-xs'}>очная<input name={'studyTime'} onChange={handleCourseForm} checked={stateStudyCourses.studyTime === 'очная'} value={'очная'}  type={"radio"}/></label>
 
                                       :null
                                   }
                                   {
-                                      select === 'МЕНЕДЖМЕНТ'
-                                      ?  <label className={'flex  justify-center items-center gap-2  text-xs'}>очная<input onChange={handleRadioStudy} checked={study === 'очная'} value={'очная'}  type={"radio"}/></label>
+                                      stateStudyCourses.course === 'МЕНЕДЖМЕНТ'
+                                      ?  <label className={'flex  justify-center items-center gap-2  text-xs'}>очная<input name={'studyTime'} onChange={handleCourseForm} checked={stateStudyCourses.studyTime === 'очная'} value={'очная'}  type={"radio"}/></label>
                                       : null
                                   }
                                   {
-                                      select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
+                                      stateStudyCourses.course === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
                                       ? <>
-                                              <label className={'flex  justify-center items-center gap-2  text-xs'}>очная<input onChange={handleRadioStudy} checked={study === 'очная'} value={'очная'}  type={"radio"}/></label>
-                                              <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input onChange={handleRadioStudy} checked={study === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
+                                              <label className={'flex  justify-center items-center gap-2  text-xs'}>очная<input name={'studyTime'} onChange={handleCourseForm} checked={stateStudyCourses.studyTime === 'очная'} value={'очная'}  type={"radio"}/></label>
+                                              <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input name={'studyTime'} onChange={handleCourseForm} checked={stateStudyCourses.studyTime === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
                                           </>
                                       : null
                                   }
                               </td>
                               <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap">
                                   {
-                                      select === 'ДИЗАЙН' ?
+                                      stateStudyCourses.course === 'ДИЗАЙН' ?
                                           level === 'БАКАЛАВРИАТ'
                                           ?  null
-                                          :  <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input onChange={handleRadioStudy} checked={study === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
+                                          :  <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input name={'studyTime'} onChange={handleCourseForm} checked={stateStudyCourses.studyTime  === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
                                       : null
                                   }
                                   {
-                                      select === 'МЕНЕДЖМЕНТ'
+                                      stateStudyCourses.course === 'МЕНЕДЖМЕНТ'
                                           ? <>
-                                                  <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input onChange={handleRadioStudy} checked={study === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
+                                                  <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input name={'studyTime'} onChange={handleCourseForm} checked={stateStudyCourses.studyTime === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
                                             </>
                                           : null
                                   }
                                   {
-                                      select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
+                                      stateStudyCourses.course === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
                                       ? <>
-                                          <label className={'flex  justify-center items-center gap-2  text-xs'}>заочная<input onChange={handleRadioStudy} checked={study === 'заочная'} value={'заочная'}  type={"radio"}/></label>
+                                          <label className={'flex  justify-center items-center gap-2  text-xs'}>заочная<input name={'studyTime'} onChange={handleCourseForm} checked={stateStudyCourses.studyTime === 'заочная'} value={'заочная'}  type={"radio"}/></label>
                                         </>
                                       : null
                                   }
                               </td>
                           </tr>
                           {
-                              level === 'МАГИСТРАТУРА'
+                              stateStudyCourses.level === 'МАГИСТРАТУРА'
                               ? null
                               : <tr className="border-b  ">
                                       <td className="text-xs text-left w-full  font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap gap-1 flex flex-col  ">
                                           {
-                                              select === 'ДИЗАЙН' ? <span className={'text-xls font-bold'}>Направление подготовки: {design.way} бакалавриат<br/></span>  : null
+                                              stateStudyCourses.course === 'ДИЗАЙН' ? <span className={'text-xls font-bold'}>Направление подготовки: {design.way} бакалавриат<br/></span>  : null
                                           }
                                           {
-                                              select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ' ? <span className={'text-xls font-bold'}>Направление подготовки: {reklama.way} бакалавриат<br/></span>  : null
+                                              stateStudyCourses.course === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ' ? <span className={'text-xls font-bold'}>Направление подготовки: {reklama.way} бакалавриат<br/></span>  : null
                                           }
                                           {
-                                              select === 'МЕНЕДЖМЕНТ' ? <span className={'text-xls font-bold'}>Направление подготовки: {management.way} бакалавриат<br/></span> : null
+                                              stateStudyCourses.course === 'МЕНЕДЖМЕНТ' ? <span className={'text-xls font-bold'}>Направление подготовки: {management.way} бакалавриат<br/></span> : null
                                           }
                                           <span>Направленность (профиль):
                                               {
-                                                  select === 'ДИЗАЙН'
-                                                      ? <select value={selectDesignCourses} onChange={handleDesignCourses} className={'w-full text-center border rounded'}>
+                                                  stateStudyCourses.course === 'ДИЗАЙН'
+                                                      ? <select name={'wayBC'} value={stateStudyCourses.wayBC} onChange={handleCourseForm} className={'w-full text-center border rounded'}>
                                                           <option value={'123'}>Выберете направление</option>
                                                           <option value={'Архитектурная среда и дизайн'}>Архитектурная среда и дизайн</option>
                                                           <option value={'Анимация'}>Анимация</option>
@@ -384,8 +474,8 @@ export default function Home() {
                                                       :null
                                               }
                                               {
-                                                  select === 'МЕНЕДЖМЕНТ'
-                                                  ? <select value={selectDesignCourses} onChange={handleDesignCourses} className={'w-full text-center border rounded'}>
+                                                  stateStudyCourses.course === 'МЕНЕДЖМЕНТ'
+                                                  ? <select name={'wayBC'} value={stateStudyCourses.wayBC} onChange={handleCourseForm} className={'w-full text-center border rounded'}>
                                                           <option value={'1'}>Выберете направление</option>
                                                           <option value={'Маркетинг и реклама'}>Маркетинг и реклама</option>
                                                           <option value={'Бренд-менеджмент'}>Бренд-менеджмент</option>
@@ -393,8 +483,8 @@ export default function Home() {
                                                   : null
                                               }
                                               {
-                                                  select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
-                                                      ? <select value={selectDesignCourses} onChange={handleDesignCourses} className={'w-full text-center border rounded'}>
+                                                  stateStudyCourses.course === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
+                                                      ? <select name={'wayBC'} value={stateStudyCourses.wayBC} onChange={handleCourseForm} className={'w-full text-center border rounded'}>
                                                           <option value={'3'}>Выберете направление</option>
                                                           <option value={'Цифровые коммуникации'}>Цифровые коммуникации</option>
                                                           <option value={'Цифровые коммуникации'}>Цифровые коммуникации</option>
@@ -407,7 +497,7 @@ export default function Home() {
                                   </tr>
                           }
                           {
-                              level === 'БАКАЛАВРИАТ'
+                              stateStudyCourses.level === 'БАКАЛАВРИАТ'
                               ? null
                               : <tr className={'w-full'}>
                                       <td className="text-xs text-left w-full  font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap gap-1 flex flex-col ">
@@ -419,7 +509,7 @@ export default function Home() {
                           </tbody>
                       </table>
                   </div>
-                  <div className={'w-full flex flex-col gap-0'}>
+                  <div className={'w-full relative flex flex-col gap-0'}>
                       <span className={'font-bold text-xs pl-3'}>Прошу засчитать в качестве результатов вступительных экзаменов результаты ЕГЭ:</span>
                       <table className="w-full border text-center">
                           <thead className="border-b w-full">
@@ -437,65 +527,52 @@ export default function Home() {
                           </thead>
                       </table>
                       {
-                          select === 'ДИЗАЙН'
+                          stateStudyCourses.course === 'ДИЗАЙН'
                           ? design.subject.map((subject,idx)=>{
                               return(
-                                  <div key={idx} className={'text-xs w-full mt-1 flex items-center justify-between'}>
-                                      <div className={'flex gap-5 items-center w-7/12'}>
-                                          <span className={'w-4/12'}>{subject.name}</span>
-                                          <div className={'flex items-center gap-1 '}>
-                                              <label>год сдачи</label>
-                                              <input className={'border-t-0 border-l-0 border-r-0 '} type={'text'}/>
-                                          </div>
-                                      </div>
-                                      <input className={'border pl-2 pr-2   w-1/12'}/>
+                                  <div key={idx} className={'text-xs  mt-3 w-3/12 '}>
+                                          <span className={'w-full'}>{subject.name}</span>
                                   </div>
                               )
                           })
                           : null
                       }
                       {
-                          select === 'МЕНЕДЖМЕНТ'
+                          stateStudyCourses.course === 'МЕНЕДЖМЕНТ'
                               ? management.subject.map((subject,idx)=>{
                                   return(
-                                      <div key={idx} className={'text-xs w-full mt-1 flex items-center justify-between'}>
-                                          <div className={'flex gap-5 items-center w-7/12'}>
-                                              <span className={'w-4/12'}>{subject.name}</span>
-                                              <div className={'flex items-center gap-1 '}>
-                                                  <label>год сдачи</label>
-                                                  <input name={`${idx}`} value={godSdachi1} onChange={handleSubjectInput} className={'border-t-0 border-l-0 border-r-0 '}/>
-                                              </div>
-                                          </div>
-                                          <input className={'border pl-2 pr-2   w-1/12'}/>
+                                      <div key={idx} className={'text-xs mt-2 w-3/12 '}>
+                                              <span className={'wfull'}>{subject.name}</span>
                                       </div>
                                   )
                               })
                               : null
                       }
                       {
-                          select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
+                          stateStudyCourses.course === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
                               ? reklama.subject.map((subject,idx)=>{
                                   return(
-                                      <div key={idx} className={'text-xs w-full mt-1 flex items-center justify-between'}>
-                                          <div className={'flex gap-5 items-center w-7/12'}>
-                                              <span className={'w-4/12'}>{subject.name}</span>
-                                              <div className={'flex items-center gap-1 '}>
-                                                  <label>год сдачи</label>
-                                                  <input className={'border-t-0 border-l-0 border-r-0 '} type={'text'}/>
-                                              </div>
-                                          </div>
-                                          <input className={'border pl-2 pr-2   w-1/12'}/>
+                                      <div key={idx} className={'text-xs mt-2 w-3/12 '}>
+                                              <span className={'wfull'}>{subject.name}</span>
                                       </div>
                                   )
                               })
                               : null
                       }
-
+                      <div className={'absolute w-4/12 top-10 left-36 text-xs'}>
+                          <label className={'flex items-center mt-1'}>Год сдачи<input name={'1'} onChange={handleSubjectInput} value={godSdachi1} className={'p-0 h-5 border-l-0 border-t-0 border-r-0'} type={"text"}/></label>
+                          <label className={'flex items-center mt-1'}>Год сдачи<input name={'2'} onChange={handleSubjectInput} value={godSdachi2} className={'p-0 h-5 border-l-0 border-t-0 border-r-0'} type={"text"}/></label>
+                          <label className={'flex items-center mt-1'}>Год сдачи<input name={'3'} onChange={handleSubjectInput} value={godSdachi3} className={'p-0 h-5 border-l-0 border-t-0 border-r-0'} type={"text"}/></label>
+                      </div>
+                      <div className={'absolute w-2/12 top-10 right-0 text-xs'}>
+                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0'} name={'1'} onChange={handleScoreInput} value={bal1} type={"text"}/>
+                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0 mt-1'} name={'2'} onChange={handleScoreInput} value={bal2} type={"text"}/>
+                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0 mt-1'} name={'3'} onChange={handleScoreInput} value={bal3} type={"text"}/>
+                      </div>
                   </div>
-                  {/*{*/}
-                  {/*    result()*/}
-                  {/*}*/}
-                  <div className={'flex mt-2 flex-col w-full gap-1'}>
+
+
+                  <div className={'flex mt-10 flex-col w-full gap-1'}>
                       <span className={'font-bold text-xs'}>Прошу засчитать в качестве результатов вступительных экзаменов результаты олимпиады:</span>
                       <div className={'w-full flex text-xs items-center '}>
                           <div className={'w-1/6 border border-black text-center'}><span>Предмет</span></div>
