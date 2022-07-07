@@ -841,8 +841,89 @@ export default function Home() {
                                       <span>_________________Подпись</span>
                                   </div>
                                   <span className={'font-bold'}>Ознакомлен(а)</span>
+                                  <div className={'flex flex-col gap-1 '}>
+                                    <span className={'w-9/12'}>- с копией лицензии на право ведения образовательной деятельности (с приложением);</span>
+                                    <span className={'w-9/12'}>- с копией свидетельства о государственной аккредитации программ (с приложением), реализуемых Институтом;
+                                    </span>
+                                    <span className={'w-9/12'}>- с информацией о предоставляемых поступающим особых правах и преимуществах при приеме на Об отсутствие у вуза общежития ознакомлен (а)обучение по программам бакалавриата и программам магистратуры;
+                                    </span>
+                                    <div className={'flex justify-between '}>
+                                        <span className={'w-9/12'}>
+                                        - с Правилами приема, в том числе правилами подачи апелляции по результатам вступительных испытаний в АНО ВО « Институт бизнеса и дизайна»;
+                                        </span>
+                                        <span>_________________Подпись</span>
+                                    </div>
+                                    <div className={'flex justify-between'}>
+                                        <span className={'w-9/12'}>
+                                            С датами завершения представления поступающими заявления о согласии на зачисление на места по договорам об оказании платных образовательных услуг <strong>ознакомлен(а):</strong>
+                                        </span>
+                                        <span>_________________Подпись</span>
+                                    </div>
+                                    <div className={'flex justify-between'}>
+                                        <span className={'w-9/12 font-bold'}>Даю согласие на обработку своих персональных данных
+                                        </span>
+                                        <span>_________________Подпись</span>
+                                    </div>
+                                      <div className={'flex justify-between items-center'}>
+                                        <span className={'w-9/12 font-bold'}>Подтверждаю подачу заявления о приеме на основании соответствующего особого права только в АНО ВО «Институт бизнеса и дизайна» на одну образовательную программу (при наличии особого права)
+                                        </span>
+                                          <span>_________________Подпись</span>
+                                      </div>
+                                      <div className={'flex justify-between items-center'}>
+                                        <span className={'w-9/12 font-bold'}>Ознакомлен(а) с информацией об ответственности за достоверность сведений, указываемых в заявлении о приеме, и за подлинность документов, подаваемых для поступления
+                                        </span>
+                                          <span>_________________Подпись</span>
+                                      </div>
+                                      <div className={'flex flex-col w-full mt-2'}>
+                                          <span className={'font-bold'}>Способ возврата поданных документов</span>
+                                          <div className={'flex justify-between'}>
+                                              <label className={'flex gap-2 font-bold'}>
+                                                  <input type={"radio"}/>
+                                                  Лично
+                                              </label>
+                                              <label className={'flex gap-2 font-bold'}>
+                                                  <input type={"radio"}/>
+                                                  Почтой России
+                                              </label>
+                                              <label className={'flex gap-2 font-bold'}>
+                                                  <input type={"radio"}/>
+                                                  По доверенности
+                                              </label>
+                                          </div>
+                                          <div className={'flex items-center justify-between mt-4'}>
+                                              <span>«______»___________ 2022 г.</span>
+                                              <div className={'flex items-center gap-1'}>
+                                                  <span>______________________подпись абитуриента</span>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
+                      </div>
+                  </div>
+                  <div className={'w-full flex flex-col text-xs gap-1 mt-3'}>
+                      <span className={'flex w-full justify-end font-bold'}>
+                          С условиями приема в АНО ВО «Институт бизнеса и дизайна» ознакомлен (а)
+                      </span>
+                      <span className={'flex w-full justify-end font-bold'}>
+                          __________________________________________/______________________________
+                      </span>
+                      <span className={'flex w-full justify-end font-bold'}>
+                          подпись законного представителя (в случае несовершеннолетнего абитуриента)
+                      </span>
+                      <div className={'flex justify-between mt-2'}>
+                          <span>Отозваны документы от участия в конкурсе</span>
+                          <span>«___»___________ 2022 г.</span>
+                          <span>__________подпись</span>
+                      </div>
+                      <div className={'flex justify-between mt-2'}>
+                          <div className={'flex flex-col gap-0 items-center'}>
+                              <span>Отозваны документы от участия в конкурсе</span>
+                              <span className={'text-x2s'}>(при условии его сдачи)</span>
+                          </div>
+                          <span>«___»___________ 2022 г.</span>
+                          <span>__________подпись</span>
                       </div>
                   </div>
               </div>
