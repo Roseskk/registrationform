@@ -6,10 +6,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function Home() {
 
-
-    const [phone,setPhone] = useState();
-    const [email,setEmail] = useState();
-
     /* ФИО СНИЛС ПОЛ ДР */
 
     const [stateFIO,setStateFIO] = useState({
@@ -60,6 +56,42 @@ export default function Home() {
         thirdExem: ''
     })
 
+    /* Олимпиады предметы ЕГЭ собес место сдачи инфо */
+
+    const [stateAdvancedSubjects,setStateAdvancedSubjects] = useState({
+        firstSubject: '',
+        secondSubject: '',
+        thirdSubject: '',
+        firstInfo:'',
+        secondInfo: '',
+        thirdInfo: '',
+        withoutEXEM1: '',
+        withoutEXEM2: '',
+        professionalWay: false,
+        interview: false,
+        placeOfExem: ''
+    })
+
+    /* Q&A TEST */
+
+    const [stateQuestionAnswer,setStateQuestionAnswer] = useState({
+        uniquePerson : '',
+        categoryInv: '',
+        uniquePersonInfo: '',
+        specialTest: '',
+        specialTestInfo: '',
+        passTest1: '',
+        passTest2: '',
+        passTest3: '',
+        uniqueUniversityPass: '',
+        uniqueUniversityPassInfo: '',
+        uniquePersonAchievements: '',
+        uniquePersonAchievements1: '',
+        uniquePersonAchievements2: '',
+        uniquePersonAchievements3: '',
+    })
+
+
     /* ДАТЫ */
     const [birthday,setBirthday] = useState(new Date());
     const [passportDate,setPassportDate] = useState(new Date());
@@ -67,18 +99,20 @@ export default function Home() {
     const [godSdachi2,SETgodSdachi1] = useState(new Date());
     const [godSdachi3,SETgodSdachi2] = useState(new Date());
 
-
-    /* Прошу засчитать в качестве результатов вступительных экзаменов результаты ЕГЭ: */
-
-
-    /* Прошу засчитать в качестве результатов вступительных экзаменов результаты олимпиады: */
-
+    /**
+     * FORM
+     */
+    const handleForm = (e) => {
+        e.preventDefault()
+        console.log(e)
+    }
 
     /* FIO */
     const handleFioInput = (e) => {
+        const value = e.target.value
         setStateFIO({
             ...stateFIO,
-            [e.target.name] : e.target.value
+            [e.target.name] : value
         })
     }
 
@@ -95,7 +129,7 @@ export default function Home() {
 
     const handleContactsInput = (e) => {
         setStateContacts({
-            ...statePassport,
+            ...stateContacts,
             [e.target.name] : e.target.value
         })
     }
@@ -115,6 +149,27 @@ export default function Home() {
         setStateScore({
             ...stateScore,
             [e.target.name] : e.target.value
+        })
+    }
+
+    /* Олимпиады предметы ЕГЭ собес место сдачи инфо */
+
+    const handleAdvancedSubject = (e) => {
+        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+        setStateAdvancedSubjects({
+            ...stateAdvancedSubjects,
+            [e.target.name] : value
+        })
+    }
+
+    /* Q&A TEST */
+
+    const handleQuestionAnswer = (e) => {
+        const value =  e.target.value
+        console.log(value)
+        setStateQuestionAnswer({
+            ...stateQuestionAnswer,
+            [e.target.name] : value
         })
     }
 
@@ -188,20 +243,20 @@ export default function Home() {
           <div className={'flex items-center justify-center'}>
               <h2 className={'text-sm font-extrabold mt-4'}>Заявление</h2>
           </div>
-          <form className={'flex flex-col gap-2 mt-2'}>
+          <form onSubmit={handleForm} className={'flex flex-col gap-2 mt-2'}>
               <div className={'flex-wrap flex'}>
                   <div className={'w-4/6 flex flex-col gap-1 items-center'}>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Фамилия</label>
-                          <input name={'middleName'} onChange={handleFioInput} value={stateFIO.middleName} className={'w-4/6 border uppercase'} />
+                          <input name={'middleName'} onChange={handleFioInput} value={stateFIO.middleName} className={'w-4/6 border uppercase'} type={"text"} />
                       </div>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Имя</label>
-                          <input name={'name'} onChange={handleFioInput} value={stateFIO.name} className={'w-4/6 border uppercase'} />
+                          <input name={'name'} onChange={handleFioInput} value={stateFIO.name} className={'w-4/6 border uppercase'} type={"text"} />
                       </div>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Отчество</label>
-                          <input name={'thirdName'} onChange={handleFioInput} value={stateFIO.thirdName} className={'w-4/6 border uppercase'} />
+                          <input name={'thirdName'} onChange={handleFioInput} value={stateFIO.thirdName} className={'w-4/6 border uppercase'} type={"text"} />
                       </div>
                   </div>
                   <div className={'w-2/6'}>
@@ -494,7 +549,7 @@ export default function Home() {
                               ? management.subject.map((subject,idx)=>{
                                   return(
                                       <div key={idx} className={'text-xs mt-2 w-3/12 '}>
-                                              <span className={'wfull'}>{subject.name}</span>
+                                              <span className={'w-full'}>{subject.name}</span>
                                       </div>
                                   )
                               })
@@ -505,7 +560,7 @@ export default function Home() {
                               ? reklama.subject.map((subject,idx)=>{
                                   return(
                                       <div key={idx} className={'text-xs mt-2 w-3/12 '}>
-                                              <span className={'wfull'}>{subject.name}</span>
+                                              <span className={'w-full'}>{subject.name}</span>
                                       </div>
                                   )
                               })
@@ -531,16 +586,16 @@ export default function Home() {
                           <div className={'w-5/6 border border-black text-center'}><span>Наименование (номер) олимпиады и реквизиты документа, подтверждающего результаты</span></div>
                       </div>
                       <div className={'w-full flex text-xs items-center '}>
-                          <div className={'w-1/6 border border-black text-center'}><input className={'w-full border-none'} type={'text'}/> </div>
-                          <div className={'w-5/6 border border-black text-center '}><input className={'w-full border-none'}/></div>
+                          <div className={'w-1/6 border border-black text-center'}><input name={'firstSubject'} onChange={handleAdvancedSubject} value={stateAdvancedSubjects.firstSubject} className={'w-full border-none'} type={'text'}/> </div>
+                          <div className={'w-5/6 border border-black text-center '}><input name={'firstInfo'} onChange={handleAdvancedSubject} value={stateAdvancedSubjects.firstInfo} className={'w-full border-none'}/></div>
                       </div>
                       <div className={'w-full flex text-xs items-center '}>
-                          <div className={'w-1/6 border border-black text-center'}><input className={'w-full border-none'} type={'text'}/> </div>
-                          <div className={'w-5/6 border border-black text-center '}><input className={'w-full border-none'}/></div>
+                          <div className={'w-1/6 border border-black text-center'}><input name={'secondSubject'} onChange={handleAdvancedSubject} value={stateAdvancedSubjects.secondSubject} className={'w-full border-none'} type={'text'}/> </div>
+                          <div className={'w-5/6 border border-black text-center '}><input name={'secondInfo'} onChange={handleAdvancedSubject} value={stateAdvancedSubjects.secondInfo} className={'w-full border-none'}/></div>
                       </div>
                       <div className={'w-full flex text-xs items-center '}>
-                          <div className={'w-1/6 border border-black text-center'}><input className={'w-full border-none'} type={'text'}/> </div>
-                          <div className={'w-5/6 border border-black text-center '}><input className={'w-full border-none'}/></div>
+                          <div className={'w-1/6 border border-black text-center'}><input name={'thirdSubject'} onChange={handleAdvancedSubject} value={stateAdvancedSubjects.thirdSubject}  className={'w-full border-none'} type={'text'}/> </div>
+                          <div className={'w-5/6 border border-black text-center '}><input name={'thirdInfo'} onChange={handleAdvancedSubject} value={stateAdvancedSubjects.thirdInfo} className={'w-full border-none'}/></div>
                       </div>
                   </div>
 
@@ -549,17 +604,17 @@ export default function Home() {
                       <div className={'w-full flex'}>
                           <span className={'font-bold w-6/12'}>Предметы</span>
                           <div className={'w-6/12'}>
-                              <input className={'w-1/2'} type={'text'}/>
-                              <input className={'w-1/2'} type={'text'}/>
+                              <input name={'withoutEXEM1'} onChange={handleAdvancedSubject} value={stateAdvancedSubjects.withoutEXEM1} className={'w-1/2'} type={'text'}/>
+                              <input name={'withoutEXEM2'} onChange={handleAdvancedSubject} value={stateAdvancedSubjects.withoutEXEM2} className={'w-1/2'} type={'text'}/>
                           </div>
                       </div>
                       <div className={'flex gap-1'}>
                           <span className={'font-bold'}>Дополнительное испытание творческой и (или) профессиональной направленности</span>
-                          <input type={"checkbox"}/>
+                          <input name={'professionalWay'} onChange={handleAdvancedSubject} checked={stateAdvancedSubjects.professionalWay} type={"checkbox"}/>
                       </div>
                       <div className={'flex gap-1'}>
                           <span className={'font-bold'}>Собеседование с просмотром</span>
-                          <input type={"checkbox"}/>
+                          <input name={'interview'} onChange={handleAdvancedSubject} checked={stateAdvancedSubjects.interview}  type={"checkbox"}/>
                       </div>
                       <div className={'flex gap-5'}>
                           <span className={''}>язык вступительных испытаний</span>
@@ -567,7 +622,7 @@ export default function Home() {
                       </div>
                       <div className={'flex flex-col'}>
                           <span className={'font-bold'}>место сдачи вступительных испытаний с использованием дистанционных технологий</span>
-                          <input className={'w-full'} type={"text"}/>
+                          <input name={'placeOfExem'} onChange={handleAdvancedSubject} value={stateAdvancedSubjects.placeOfExem} className={'w-full'} type={"text"}/>
                       </div>
                   </div>
 
@@ -577,11 +632,11 @@ export default function Home() {
                           <span className={'font-bold'}>Имею особое право на поступление в вуз</span>
                           <div className={'flex gap-5 items-center ml-36'}>
                               <label className={'flex items-center'}>
-                                  <input className={'p-2'} type={'checkbox'}/>
+                                  <input name={'uniquePerson'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.uniquePerson === 'да'} value={'да'} className={'p-2'} type={'radio'}/>
                                   ДА
                               </label>
                               <label className={'flex items-center'}>
-                                  <input className={'p-2'} type={'checkbox'}/>
+                                  <input name={'uniquePerson'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.uniquePerson === 'нет'} value={'нет'} className={'p-2'} type={'radio'}/>
                                   НЕТ
                               </label>
                           </div>
@@ -589,21 +644,21 @@ export default function Home() {
 
                       <ul className={'flex flex-col text-xs'}>
                           <li className={'flex gap-1 items-center'}>
-                              <input type={"checkbox"}/>
+                              <input name={'categoryInv'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.categoryInv === 'сирота'} value={'сирота'}  type={"radio"}/>
                               <span>– как ребенок-сирота или как ребенок, оставшийся без попечения родителей</span>
                           </li>
                           <li className={'flex gap-1 items-center'}>
-                              <input type={"checkbox"}/>
+                              <input name={'categoryInv'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.categoryInv === 'инвалид'} value={'инвалид'}  type={"radio"} />
                               <span>– как ребенок-инвалид, инвалид I или II группы, инвалид с детства</span>
                           </li>
                           <li className={'flex gap-1 items-center'}>
-                              <input type={"checkbox"}/>
+                              <input name={'categoryInv'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.categoryInv === 'иная категория'} value={'иная категория'}  type={"radio"} />
                               <span>– иная категория</span>
                           </li>
                       </ul>
                       <div className={'w-full flex items-center gap-1'}>
                             <span className={'w-2/6'}>если ДА, указать основание</span>
-                            <input className={'w-4/6'} type={"text"}/>
+                            <input name={'uniquePersonInfo'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.uniquePersonInfo} className={'w-4/6'} type={"text"}/>
                       </div>
                   </div>
 
@@ -612,11 +667,11 @@ export default function Home() {
                          <span className={'font-bold'}>Нуждаюсь в необходимости создания специальных условий</span>
                           <div className={'flex gap-2 items-center'}>
                               <lable className={'flex items-center gap-1'}>
-                                  <input type={"checkbox"}/>
+                                  <input name={'specialTest'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.specialTest === 'да'} value={'да'} type={"radio"}/>
                                   ДА
                               </lable>
                               <lable className={'flex items-center gap-1'}>
-                                  <input type={"checkbox"}/>
+                                  <input name={'specialTest'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.specialTest === 'нет'} value={'нет'} type={"checkbox"}/>
                                   НЕТ
                               </lable>
                           </div>
@@ -627,15 +682,15 @@ export default function Home() {
                               <span >если ДА, указать специальные условия</span>
                           </div>
                           <div className={'w-8/12'}>
-                              <input className={'w-full'} type={'text'}/>
+                              <input name={'specialTestInfo'} onChange={handleQuestionAnswer}  value={stateQuestionAnswer.specialTestInfo} className={'w-full'} type={'text'}/>
                           </div>
                       </div>
                       <div className={'flex  w-full flex-wrap mt-1'}>
                           <span className={'w-4/12'}>перечень вступительных испытаний</span>
                           <div className={'w-8/12 flex flex-wrap'}>
-                              <input className={'w-1/3'} type={"text"} />
-                              <input className={'w-1/3'} type={"text"} />
-                              <input className={'w-1/3'} type={"text"} />
+                              <input name={'passTest1'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.passTest1} className={'w-1/3'} type={"text"} />
+                              <input name={'passTest2'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.passTest2} className={'w-1/3'} type={"text"} />
+                              <input name={'passTest3'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.passTest3} className={'w-1/3'} type={"text"} />
                           </div>
                       </div>
                   </div>
@@ -647,11 +702,11 @@ export default function Home() {
                           </span>
                           <div className={'flex gap-2'}>
                               <label className={'flex items-center gap-1'}>
-                                  <input type={"checkbox"}/>
+                                  <input name={'uniqueUniversityPass'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.uniqueUniversityPass === 'да'} value={'да'}  type={"radio"}/>
                                   ДА
                               </label>
                               <label className={'flex items-center gap-1'}>
-                                  <input type={"checkbox"}/>
+                                  <input name={'uniqueUniversityPass'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.uniqueUniversityPass === 'да'} value={'да'}  type={"radio"}/>
                                   Нет
                               </label>
                           </div>
@@ -661,7 +716,7 @@ export default function Home() {
                               <span>если ДА, указать основание</span>
                           </div>
                           <div className={'w-4/6'}>
-                              <input className={'w-full'} type={"text"}/>
+                              <input name={'uniqueUniversityPassInfo'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.uniqueUniversityPassInfo}  className={'w-full'} type={"text"}/>
                           </div>
                       </div>
 
@@ -671,11 +726,11 @@ export default function Home() {
                           </span>
                           <div className={'flex gap-2 mt-1'}>
                               <label className={'flex items-center gap-1'}>
-                                  <input type={"checkbox"}/>
+                                  <input name={'uniquePersonAchievements'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.uniquePersonAchievements === 'да'} value={'да'}  type={"radio"}/>
                                   ДА
                               </label>
                               <label className={'flex items-center gap-1'}>
-                                  <input type={"checkbox"}/>
+                                  <input name={'uniquePersonAchievements'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.uniquePersonAchievements === 'нет'} value={'нет'}  type={"radio"}/>
                                   Нет
                               </label>
                           </div>
@@ -684,9 +739,9 @@ export default function Home() {
                       <div className={'flex w-full mt-1'}>
                             <span className={'w-2/6'}>если ДА, указать сведения о них</span>
                             <div className={'flex flex-col w-4/6 gap-1'}>
-                                <input className={'w-full'} type={"text"}/>
-                                <input className={'w-full'} type={"text"}/>
-                                <input className={'w-full'} type={"text"}/>
+                                <input name={'uniquePersonAchievements1'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.uniquePersonAchievements1}  className={'w-full'} type={"text"}/>
+                                <input name={'uniquePersonAchievements2'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.uniquePersonAchievements2}  className={'w-full'} type={"text"}/>
+                                <input name={'uniquePersonAchievements3'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.uniquePersonAchievements3}  className={'w-full'} type={"text"}/>
                             </div>
                       </div>
                   </div>
@@ -696,6 +751,7 @@ export default function Home() {
                   </div>
 
               </div>
+              <button>Ok</button>
           </form>
       </div>
     </div>
