@@ -6,11 +6,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function Home() {
 
-    const [select,setSelect] = useState('ДИЗАЙН');
-    const [selectDesignCourses,setSelectDesignCourses] = useState();
-
-    const [level,setLevel] = useState();
-    const [study,setStudy] = useState();
 
     const [phone,setPhone] = useState();
     const [email,setEmail] = useState();
@@ -57,21 +52,24 @@ export default function Home() {
         wayBC: ''
     })
 
+    /* Баллы */
+
+    const [stateScore,setStateScore] = useState({
+        firstExem: '',
+        secondExem: '',
+        thirdExem: ''
+    })
 
     /* ДАТЫ */
     const [birthday,setBirthday] = useState(new Date());
     const [passportDate,setPassportDate] = useState(new Date());
+    const [godSdachi1,SETgodSdachi0] = useState(new Date());
+    const [godSdachi2,SETgodSdachi1] = useState(new Date());
+    const [godSdachi3,SETgodSdachi2] = useState(new Date());
 
 
     /* Прошу засчитать в качестве результатов вступительных экзаменов результаты ЕГЭ: */
 
-    const [godSdachi1,SETgodSdachi0] = useState();
-    const [godSdachi2,SETgodSdachi1] = useState();
-    const [godSdachi3,SETgodSdachi2] = useState();
-
-    const [bal1,setBal1] = useState();
-    const [bal2,setBal2] = useState();
-    const [bal3,setBal3] = useState();
 
     /* Прошу засчитать в качестве результатов вступительных экзаменов результаты олимпиады: */
 
@@ -109,61 +107,15 @@ export default function Home() {
             ...stateStudyCourses,
             [e.target.name] : e.target.value
         })
-        console.log(stateStudyCourses)
     }
 
-    const handleSelect = (e) => {
-        setSelect(e.target.value)
-    }
-    const handleDesignCourses = (e) => {
-        setSelectDesignCourses(e.target.value)
-    }
+    /* Баллы */
 
-
-    const handleSubjectInput = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        switch (name) {
-            case '1' : {
-                SETgodSdachi0(value)
-                return;
-            }
-            case '2' : {
-                SETgodSdachi1(value)
-                return;
-            }
-            case '3': {
-                SETgodSdachi2(value)
-                return;
-            }
-        }
-    }
-
-    const handleScoreInput = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        switch (name) {
-            case '1' : {
-                setBal1(value)
-                return;
-            }
-            case '2' : {
-                setBal2(value)
-                return;
-            }
-            case '3': {
-                setBal3(value)
-                return;
-            }
-        }
-    }
-
-    const handleRadioStudy = (e) => {
-        setStudy(e.target.value)
-    }
-
-    const handleLevel = (e) => {
-        setLevel(e.target.value)
+    const handleScore = (e) => {
+        setStateScore({
+            ...stateScore,
+            [e.target.name] : e.target.value
+        })
     }
 
 
@@ -376,7 +328,7 @@ export default function Home() {
                               <th scope="col" className="text-xs font-bold  text-gray-900  border-r">
                                   <label className={'flex  justify-center items-center  gap-2 text-xs'}>
                                       {
-                                          select === 'МЕНЕДЖМЕНТ' || select === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
+                                          stateStudyCourses.course === 'МЕНЕДЖМЕНТ' || stateStudyCourses.course === 'РЕКЛАМА И СВЯЗИ С ОБЩЕСТВЕННОСТЬЮ'
                                           ? null
                                           : <>
                                                   МАГИСТРАТУРА
@@ -419,7 +371,7 @@ export default function Home() {
                               <td className="text-xs font-bold text-gray-900 font-light px-3 py-2 whitespace-nowrap">
                                   {
                                       stateStudyCourses.course === 'ДИЗАЙН' ?
-                                          level === 'БАКАЛАВРИАТ'
+                                          stateStudyCourses.level === 'БАКАЛАВРИАТ'
                                           ?  null
                                           :  <label className={'flex  justify-center items-center gap-2  text-xs'}>очно-заочная<input name={'studyTime'} onChange={handleCourseForm} checked={stateStudyCourses.studyTime  === 'очно-заочная'} value={'очно-заочная'}  type={"radio"}/></label>
                                       : null
@@ -559,15 +511,15 @@ export default function Home() {
                               })
                               : null
                       }
-                      <div className={'absolute w-4/12 top-10 left-36 text-xs'}>
-                          <label className={'flex items-center mt-1'}>Год сдачи<input name={'1'} onChange={handleSubjectInput} value={godSdachi1} className={'p-0 h-5 border-l-0 border-t-0 border-r-0'} type={"text"}/></label>
-                          <label className={'flex items-center mt-1'}>Год сдачи<input name={'2'} onChange={handleSubjectInput} value={godSdachi2} className={'p-0 h-5 border-l-0 border-t-0 border-r-0'} type={"text"}/></label>
-                          <label className={'flex items-center mt-1'}>Год сдачи<input name={'3'} onChange={handleSubjectInput} value={godSdachi3} className={'p-0 h-5 border-l-0 border-t-0 border-r-0'} type={"text"}/></label>
+                      <div className={'absolute  top-10 left-36 text-xs'}>
+                          <label className={'flex gap-2 mt-2 items-center '}><span className={'w-9/12'}>Год сдачи</span> <DatePicker  selected={godSdachi1} onChange={(date)=>SETgodSdachi0(date)} /></label>
+                          <label className={'flex items-center mt-1'}><span className={'w-9/12'}>Год сдачи</span> <DatePicker selected={godSdachi2} onChange={(date)=>SETgodSdachi1(date)} /></label>
+                          <label className={'flex items-center mt-1'}><span className={'w-9/12'}>Год сдачи</span> <DatePicker selected={godSdachi3} onChange={(date)=>SETgodSdachi2(date)} /></label>
                       </div>
                       <div className={'absolute w-2/12 top-10 right-0 text-xs'}>
-                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0'} name={'1'} onChange={handleScoreInput} value={bal1} type={"text"}/>
-                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0 mt-1'} name={'2'} onChange={handleScoreInput} value={bal2} type={"text"}/>
-                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0 mt-1'} name={'3'} onChange={handleScoreInput} value={bal3} type={"text"}/>
+                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0'} name={'firstExem'}  onChange={handleScore} value={stateScore.firstExem} type={"number"}/>
+                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0 mt-1'} name={'secondExem'}  onChange={handleScore} value={stateScore.secondExem} type={"number"}/>
+                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0 mt-1'} name={'thirdExem'}  onChange={handleScore} value={stateScore.thirdExem} type={"number"}/>
                       </div>
                   </div>
 
