@@ -91,6 +91,19 @@ export default function Home() {
         uniquePersonAchievements3: '',
     })
 
+    /* footer Закон образование когда тип и что дальше */
+
+    const [stateOldStudyStatus,setStateOldStudyStatus] = useState({
+        zakon: false,
+        oldStudyName: '',
+        oldYear: '',
+        diplomNumber: '',
+        studyDoc: '',
+        studyDocInfo: '',
+        isStudentCourses: '',
+        docBack: ''
+    })
+
 
     /* ДАТЫ */
     const [birthday,setBirthday] = useState(new Date());
@@ -98,6 +111,7 @@ export default function Home() {
     const [godSdachi1,SETgodSdachi0] = useState(new Date());
     const [godSdachi2,SETgodSdachi1] = useState(new Date());
     const [godSdachi3,SETgodSdachi2] = useState(new Date());
+    const [diplomDate,setDiplomDate] = useState(new Date());
 
     /**
      * FORM
@@ -173,6 +187,16 @@ export default function Home() {
         })
     }
 
+    /* footer Закон образование когда тип и что дальше */
+
+    const handleOldStudy = (e) => {
+        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+        setStateOldStudyStatus({
+            ...stateOldStudyStatus,
+            [e.target.name] : value
+        })
+    }
+
 
     const design = {
        way: '54.03.01 ДИЗАЙН',
@@ -198,12 +222,12 @@ export default function Home() {
         ]
     }
   return (
-    <div >
+    <div className={''}>
       <Head>
         <title>B&D FORM</title>
         <meta name="description" content="Powered by B&D" />
       </Head>
-      <div className={'w-a4 h-a4 mx-auto p-3'}>
+      <div className={'w-a4 h-a4 mx-auto p-3 '}>
           <div className={'w-full flex items-center justify-between'}>
                   <table className="w-1/3 border text-center">
                       <thead className="border-b">
@@ -711,7 +735,7 @@ export default function Home() {
                               </label>
                           </div>
                       </div>
-                      <div className={'flex w-full mt-32'}>
+                      <div className={'flex w-full'}>
                           <div className={'w-2/6'}>
                               <span>если ДА, указать основание</span>
                           </div>
@@ -751,52 +775,52 @@ export default function Home() {
                           <span className={'font-bold'}>Сведения о том, что поступающий является лицом, признанным гражданином, или лицом, указанным в части 3.1 ст.5 или ст.6 Федерального закона No 84 -ФЗ
                           </span>
                           <lable className={'font-bold flex items-center gap-1'}>
-                              <input name={'zakon'}  type={"checkbox"}/>
+                              <input name={'zakon'} onChange={handleOldStudy} checked={stateOldStudyStatus.zakon}  type={"checkbox"}/>
                               ДА
                           </lable>
                       </div>
                       <div className={'w-full flex flex-col'}>
-                          <input name={'nameEDU'} className={'placeholder:text-black placeholder:font-bold pt-1 pb-1'} placeholder={'Наименование учебного заведения:'}/>
+                          <input name={'oldStudyName'} onChange={handleOldStudy} value={stateOldStudyStatus.oldStudyName} className={'placeholder:text-black placeholder:font-bold pt-1 pb-1'} placeholder={'Наименование учебного заведения:'} type={"text"}/>
                           <div className={'flex gap-3 mt-1'}>
                               <span className={'font-bold'}>Окончил(а) в </span>
-                              <input type={"number"}/>
+                              <input name={'oldYear'} onChange={handleOldStudy} value={stateOldStudyStatus.oldYear} type={"number"}/>
                               <span className={'font-normal'}>году</span>
                           </div>
                       </div>
                       <div className={'flex flex-col w-full'}>
                           <div className={'flex w-full justify-between items-center '}>
                               <span><strong>Документ об образовании:</strong> серия № </span>
-                              <input className={'w-3/12'} type={"number"}/>
+                              <input name={'diplomNumber'} onChange={handleOldStudy} value={stateOldStudyStatus.diplomNumber} className={'w-3/12'} type={"text"}/>
                               <span>выдан</span>
                               <div className={'w-3/12'}>
-                                  <DatePicker className={''} />
+                                  <DatePicker selected={diplomDate} onChange={(date)=>setDiplomDate(date)}  className={''} />
                               </div>
                           </div>
                           <div className={'flex flex-col w-full mt-1 gap-1'}>
                               <label className={'flex items-center gap-1'}>
-                                  <input type={"radio"}/>
+                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'среднее'} value={'среднее'} type={"radio"}/>
                                   аттестат о среднем общем образовании Российской Федерации
                               </label>
                               <label className={'flex items-center gap-1'}>
-                                  <input type={"radio"}/>
+                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'про'} value={'про'} type={"radio"}/>
                                   диплом о среднем профессиональном образовании Российской Федерации
                               </label>
                               <label className={'flex items-center gap-1'}>
-                                  <input type={"radio"}/>
+                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'высшее'} value={'высшее'} type={"radio"}/>
                                   диплом о высшем образовании Российской Федерации
                               </label>
                               <label className={'flex items-center gap-1'}>
-                                  <input type={"radio"}/>
+                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'иностранец'} value={'иностранец'} type={"radio"}/>
                                   документ об образовании иностранного государства
                               </label>
                               <label className={'flex items-center gap-1'}>
-                                  <input type={"radio"}/>
+                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'иной'} value={'иной'} type={"radio"}/>
                                   иной документ об образовании
                               </label>
 
                               <label className={'flex items-center justify-between gap-1'}>
                                   <span className={'font-bold'}>если иной, указать тип</span>
-                                  <input className={'w-9/12'} type={"text"}/>
+                                  <input onChange={handleOldStudy} value={stateOldStudyStatus.studyDocInfo} className={'w-9/12'} type={"text"}/>
                               </label>
                           </div>
                       </div>
@@ -806,27 +830,27 @@ export default function Home() {
                            <div className={'flex gap-3 font-bold'}>
                               <label className={'flex items-center gap-1'}>
                                   ДА
-                                  <input type={"radio"}/>
+                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === '8'} value={'8'} type={"radio"}/>
                                   8 мес;
                               </label>
                                <label className={'flex items-center gap-1'}>
                                    ДА
-                                   <input type={"radio"}/>
+                                   <input onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === '6'} value={'6'} type={"radio"}/>
                                    6 мес;
                                </label>
                                <label className={'flex items-center gap-1'}>
                                    ДА
-                                   <input type={"radio"}/>
+                                   <input onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === '4'} value={'4'} type={"radio"}/>
                                    4 мес;
                                </label>
                                <label className={'flex items-center gap-1'}>
                                    ДА
-                                   <input type={"radio"}/>
+                                   <input onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === 'лето'} value={'лето'} type={"radio"}/>
                                    летний курс
                                </label>
                                <label className={'flex items-center gap-1 ml-10'}>
                                    НЕТ
-                                   <input type={"radio"}/>
+                                   <input onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === 'нет'} value={'нет'} type={"radio"}/>
                                </label>
                            </div>
 
@@ -878,15 +902,15 @@ export default function Home() {
                                           <span className={'font-bold'}>Способ возврата поданных документов</span>
                                           <div className={'flex justify-between'}>
                                               <label className={'flex gap-2 font-bold'}>
-                                                  <input type={"radio"}/>
+                                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.docBack === 'лично'} value={'лично'} type={"radio"}/>
                                                   Лично
                                               </label>
                                               <label className={'flex gap-2 font-bold'}>
-                                                  <input type={"radio"}/>
+                                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.docBack === 'почта'} value={'почта'} type={"radio"}/>
                                                   Почтой России
                                               </label>
                                               <label className={'flex gap-2 font-bold'}>
-                                                  <input type={"radio"}/>
+                                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.docBack === 'доверенность'} value={'доверенность'} type={"radio"}/>
                                                   По доверенности
                                               </label>
                                           </div>
@@ -926,6 +950,9 @@ export default function Home() {
                           <span>__________подпись</span>
                       </div>
                   </div>
+              </div>
+              <div className={'p-2'}>
+                  <button className={'border border-black w-full flex justify-center items-center rounded pt-1 pb-1 '}>Подать заявление</button>
               </div>
           </form>
       </div>
