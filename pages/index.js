@@ -191,6 +191,8 @@ export default function Home() {
 
     const handleOldStudy = (e) => {
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+
+        console.log(value)
         setStateOldStudyStatus({
             ...stateOldStudyStatus,
             [e.target.name] : value
@@ -730,7 +732,7 @@ export default function Home() {
                                   ДА
                               </label>
                               <label className={'flex items-center gap-1'}>
-                                  <input name={'uniqueUniversityPass'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.uniqueUniversityPass === 'да'} value={'да'}  type={"radio"}/>
+                                  <input name={'uniqueUniversityPass'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.uniqueUniversityPass === 'нет'} value={'нет'}  type={"radio"}/>
                                   Нет
                               </label>
                           </div>
@@ -798,29 +800,29 @@ export default function Home() {
                           </div>
                           <div className={'flex flex-col w-full mt-1 gap-1'}>
                               <label className={'flex items-center gap-1'}>
-                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'среднее'} value={'среднее'} type={"radio"}/>
+                                  <input name={'studyDoc'} onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'среднее'} value={'среднее'} type={"radio"}/>
                                   аттестат о среднем общем образовании Российской Федерации
                               </label>
                               <label className={'flex items-center gap-1'}>
-                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'про'} value={'про'} type={"radio"}/>
+                                  <input name={'studyDoc'} onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'про'} value={'про'} type={"radio"}/>
                                   диплом о среднем профессиональном образовании Российской Федерации
                               </label>
                               <label className={'flex items-center gap-1'}>
-                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'высшее'} value={'высшее'} type={"radio"}/>
+                                  <input name={'studyDoc'} onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'высшее'} value={'высшее'} type={"radio"}/>
                                   диплом о высшем образовании Российской Федерации
                               </label>
                               <label className={'flex items-center gap-1'}>
-                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'иностранец'} value={'иностранец'} type={"radio"}/>
+                                  <input name={'studyDoc'} onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'иностранец'} value={'иностранец'} type={"radio"}/>
                                   документ об образовании иностранного государства
                               </label>
                               <label className={'flex items-center gap-1'}>
-                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'иной'} value={'иной'} type={"radio"}/>
+                                  <input name={'studyDoc'} onChange={handleOldStudy} checked={stateOldStudyStatus.studyDoc === 'иной'} value={'иной'} type={"radio"}/>
                                   иной документ об образовании
                               </label>
 
                               <label className={'flex items-center justify-between gap-1'}>
                                   <span className={'font-bold'}>если иной, указать тип</span>
-                                  <input onChange={handleOldStudy} value={stateOldStudyStatus.studyDocInfo} className={'w-9/12'} type={"text"}/>
+                                  <input name={'studyDocInfo'} onChange={handleOldStudy} value={stateOldStudyStatus.studyDocInfo} className={'w-9/12'} type={"text"}/>
                               </label>
                           </div>
                       </div>
@@ -830,27 +832,27 @@ export default function Home() {
                            <div className={'flex gap-3 font-bold'}>
                               <label className={'flex items-center gap-1'}>
                                   ДА
-                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === '8'} value={'8'} type={"radio"}/>
+                                  <input name={'isStudentCourses'}  onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === '8'} value={'8'} type={"radio"}/>
                                   8 мес;
                               </label>
                                <label className={'flex items-center gap-1'}>
                                    ДА
-                                   <input onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === '6'} value={'6'} type={"radio"}/>
+                                   <input name={'isStudentCourses'} onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === '6'} value={'6'} type={"radio"}/>
                                    6 мес;
                                </label>
                                <label className={'flex items-center gap-1'}>
                                    ДА
-                                   <input onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === '4'} value={'4'} type={"radio"}/>
+                                   <input name={'isStudentCourses'} onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === '4'} value={'4'} type={"radio"}/>
                                    4 мес;
                                </label>
                                <label className={'flex items-center gap-1'}>
                                    ДА
-                                   <input onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === 'лето'} value={'лето'} type={"radio"}/>
+                                   <input name={'isStudentCourses'} onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === 'лето'} value={'лето'} type={"radio"}/>
                                    летний курс
                                </label>
                                <label className={'flex items-center gap-1 ml-10'}>
                                    НЕТ
-                                   <input onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === 'нет'} value={'нет'} type={"radio"}/>
+                                   <input name={'isStudentCourses'} onChange={handleOldStudy} checked={stateOldStudyStatus.isStudentCourses === 'нет'} value={'нет'} type={"radio"}/>
                                </label>
                            </div>
 
@@ -902,15 +904,15 @@ export default function Home() {
                                           <span className={'font-bold'}>Способ возврата поданных документов</span>
                                           <div className={'flex justify-between'}>
                                               <label className={'flex gap-2 font-bold'}>
-                                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.docBack === 'лично'} value={'лично'} type={"radio"}/>
+                                                  <input name={'docBack'} onChange={handleOldStudy} checked={stateOldStudyStatus.docBack === 'лично'} value={'лично'} type={"radio"}/>
                                                   Лично
                                               </label>
                                               <label className={'flex gap-2 font-bold'}>
-                                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.docBack === 'почта'} value={'почта'} type={"radio"}/>
+                                                  <input name={'docBack'} onChange={handleOldStudy} checked={stateOldStudyStatus.docBack === 'почта'} value={'почта'} type={"radio"}/>
                                                   Почтой России
                                               </label>
                                               <label className={'flex gap-2 font-bold'}>
-                                                  <input onChange={handleOldStudy} checked={stateOldStudyStatus.docBack === 'доверенность'} value={'доверенность'} type={"radio"}/>
+                                                  <input name={'docBack'} onChange={handleOldStudy} checked={stateOldStudyStatus.docBack === 'доверенность'} value={'доверенность'} type={"radio"}/>
                                                   По доверенности
                                               </label>
                                           </div>
