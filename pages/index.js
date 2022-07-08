@@ -653,7 +653,7 @@ export default function Home() {
                   </div>
 
 
-                  <div className={'w-full flex flex-col text-xs mt-4'}>
+                  <div className={'w-full flex flex-col text-xs mt-6'}>
                       <div className={'flex items-center'}>
                           <span className={'font-bold'}>Имею особое право на поступление в вуз</span>
                           <div className={'flex gap-5 items-center ml-36'}>
