@@ -121,7 +121,7 @@ export default function Home() {
      */
     const handleForm = (e) => {
         e.preventDefault()
-        axios.post(`${config.url$}form`,{
+        axios.post('http://localhost:8083/api/r/form/post',{
             middleName : stateFIO.middleName,
             name: stateFIO.name,
             thirdName: stateFIO.thirdName,
@@ -179,21 +179,23 @@ export default function Home() {
             studyDocInfo: stateOldStudyStatus.studyDocInfo,
             isStudentCourses: stateOldStudyStatus.isStudentCourses,
             docBack: stateOldStudyStatus.docBack,
-            birthday: birthday,
-            passportDate: passportDate,
-            godSdachi1: godSdachi1,
-            godSdachi2: godSdachi2,
-            godSdachi3: godSdachi3,
-            diplomDate: diplomDate,
+            birthday,
+            passportDate,
+            godSdachi1,
+            godSdachi2,
+            godSdachi3,
+            diplomDate,
             course: stateStudyCourses.course,
             level: stateStudyCourses.level,
             studyTime: stateStudyCourses.studyTime,
             wayBC: stateStudyCourses.wayBC
         })
             .then(res=>{
+                console.log(res)
                 alert(res)
             })
             .catch(err=>{
+                console.log(err)
                 alert(err)
             })
     }
