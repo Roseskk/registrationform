@@ -190,6 +190,12 @@ export default function Home() {
             studyTime: stateStudyCourses.studyTime,
             wayBC: stateStudyCourses.wayBC
         })
+            .then(res=>{
+                alert(res)
+            })
+            .catch(err=>{
+                alert(err)
+            })
     }
 
     /* FIO */
