@@ -3,8 +3,11 @@ import Image from 'next/image'
 import {useState} from "react";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
+import config from "../cfg/api";
 
 export default function Home() {
+
 
     /* ФИО СНИЛС ПОЛ ДР */
 
@@ -118,7 +121,83 @@ export default function Home() {
      */
     const handleForm = (e) => {
         e.preventDefault()
-        console.log(e)
+        axios.post('http://localhost:8083/api/r/form/post',{
+            middleName : stateFIO.middleName,
+            name: stateFIO.name,
+            thirdName: stateFIO.thirdName,
+            gender: stateFIO.gender,
+            snils: stateFIO.snils,
+            passportName: statePassport.name,
+            seria: statePassport.seria,
+            nomer: statePassport.nomer,
+            kemvidan: statePassport.kemvidan,
+            grajdanstvo: statePassport.grajdanstvo,
+            inie: statePassport.inie,
+            country: statePassport.country,
+            resp: statePassport.resp,
+            rajon: statePassport.rajon,
+            city: statePassport.city,
+            street: statePassport.street,
+            house: statePassport.house,
+            corpus: statePassport.corpus,
+            kv: statePassport.kv,
+            phone: stateContacts.phone,
+            email: stateContacts.email,
+            firstExem: stateScore.firstExem,
+            secondExem: stateScore.secondExem,
+            thirdExem: stateScore.thirdExem,
+            firstSubject: stateAdvancedSubjects.firstSubject,
+            secondSubject: stateAdvancedSubjects.secondSubject,
+            thirdSubject: stateAdvancedSubjects.thirdSubject,
+            firstInfo: stateAdvancedSubjects.firstInfo,
+            secondInfo: stateAdvancedSubjects.secondInfo,
+            thirdInfo: stateAdvancedSubjects.thirdInfo,
+            withoutEXEM1: stateAdvancedSubjects.withoutEXEM1,
+            withoutEXEM2: stateAdvancedSubjects.withoutEXEM2,
+            professionalWay: stateAdvancedSubjects.professionalWay,
+            interview: stateAdvancedSubjects.interview,
+            placeOfExem: stateAdvancedSubjects.placeOfExem,
+            uniquePerson: stateQuestionAnswer.uniquePerson,
+            categoryInv: stateQuestionAnswer.categoryInv,
+            UniquePersonInfo: stateQuestionAnswer.uniquePersonInfo,
+            specialTest: stateQuestionAnswer.specialTest,
+            specialTestInfo: stateQuestionAnswer.specialTestInfo,
+            passTest1: stateQuestionAnswer.passTest1,
+            passTest2: stateQuestionAnswer.passTest2,
+            passTest3: stateQuestionAnswer.passTest3,
+            uniqueUniversityPass: stateQuestionAnswer.uniqueUniversityPass,
+            uniqueUniversityPassInfo: stateQuestionAnswer.uniqueUniversityPassInfo,
+            uniqueUniversityPassAchievements: stateQuestionAnswer.uniqueUniversityPassAchievements,
+            uniqueUniversityPassAchievements1: stateQuestionAnswer.uniqueUniversityPassAchievements1,
+            uniqueUniversityPassAchievements2: stateQuestionAnswer.uniqueUniversityPassAchievements2,
+            uniqueUniversityPassAchievements3: stateQuestionAnswer.uniqueUniversityPassAchievements3,
+            zakon: stateOldStudyStatus.zakon,
+            oldStudyName: stateOldStudyStatus.oldStudyName,
+            oldYear: stateOldStudyStatus.oldYear,
+            diplomNumber: stateOldStudyStatus.diplomNumber,
+            studyDoc: stateOldStudyStatus.studyDoc,
+            studyDocInfo: stateOldStudyStatus.studyDocInfo,
+            isStudentCourses: stateOldStudyStatus.isStudentCourses,
+            docBack: stateOldStudyStatus.docBack,
+            birthday,
+            passportDate,
+            godSdachi1,
+            godSdachi2,
+            godSdachi3,
+            diplomDate,
+            course: stateStudyCourses.course,
+            level: stateStudyCourses.level,
+            studyTime: stateStudyCourses.studyTime,
+            wayBC: stateStudyCourses.wayBC
+        })
+            .then(res=>{
+                console.log(res)
+                alert(res)
+            })
+            .catch(err=>{
+                console.log(err)
+                alert(err)
+            })
     }
 
     /* FIO */
@@ -653,7 +732,7 @@ export default function Home() {
                   </div>
 
 
-                  <div className={'w-full flex flex-col text-xs mt-4'}>
+                  <div className={'w-full flex flex-col text-xs mt-6'}>
                       <div className={'flex items-center'}>
                           <span className={'font-bold'}>Имею особое право на поступление в вуз</span>
                           <div className={'flex gap-5 items-center ml-36'}>
