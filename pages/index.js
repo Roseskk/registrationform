@@ -89,9 +89,9 @@ export default function Home() {
         uniqueUniversityPass: '',
         uniqueUniversityPassInfo: '',
         uniquePersonAchievements: '',
-        uniquePersonAchievements1: '',
-        uniquePersonAchievements2: '',
-        uniquePersonAchievements3: '',
+        uniquePersonAchievements1: false ,
+        uniquePersonAchievements2: false ,
+        uniquePersonAchievements3: false ,
     })
 
     /* footer Закон образование когда тип и что дальше */
@@ -121,7 +121,7 @@ export default function Home() {
      */
     const handleForm = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8083/api/r/form/post',{
+        axios.post('http://172.16.10.5:8083/api/r/form/post',{
             middleName : stateFIO.middleName,
             name: stateFIO.name,
             thirdName: stateFIO.thirdName,
@@ -191,17 +191,16 @@ export default function Home() {
             wayBC: stateStudyCourses.wayBC
         })
             .then(res=>{
-                console.log(res)
-                alert(res)
+                alert('Заявление отправлено')
             })
             .catch(err=>{
-                console.log(err)
                 alert(err)
             })
     }
 
     /* FIO */
     const handleFioInput = (e) => {
+
         const value = e.target.value
         setStateFIO({
             ...stateFIO,
@@ -258,8 +257,7 @@ export default function Home() {
     /* Q&A TEST */
 
     const handleQuestionAnswer = (e) => {
-        const value =  e.target.value
-        console.log(value)
+        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
         setStateQuestionAnswer({
             ...stateQuestionAnswer,
             [e.target.name] : value
@@ -353,22 +351,22 @@ export default function Home() {
                   <div className={'w-4/6 flex flex-col gap-1 items-center'}>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Фамилия</label>
-                          <input name={'middleName'} onChange={handleFioInput} value={stateFIO.middleName} className={'w-4/6 border uppercase'} type={"text"} />
+                          <input name={'middleName'} required onChange={handleFioInput} value={stateFIO.middleName} className={'w-4/6 border uppercase'} type={"text"} />
                       </div>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Имя</label>
-                          <input name={'name'} onChange={handleFioInput} value={stateFIO.name} className={'w-4/6 border uppercase'} type={"text"} />
+                          <input name={'name'} required onChange={handleFioInput} value={stateFIO.name} className={'w-4/6 border uppercase'} type={"text"} />
                       </div>
                       <div className={'w-full text-sm flex '}>
                           <label className={'w-1/6 font-bold'}>Отчество</label>
-                          <input name={'thirdName'} onChange={handleFioInput} value={stateFIO.thirdName} className={'w-4/6 border uppercase'} type={"text"} />
+                          <input name={'thirdName'} required onChange={handleFioInput} value={stateFIO.thirdName} className={'w-4/6 border uppercase'} type={"text"} />
                       </div>
                   </div>
                   <div className={'w-2/6'}>
                     <div className={'flex justify-between items-center text-sm'}>
                         <h3>Пол</h3>
                         <lable className={'flex item gap-2'}>
-                            <input onChange={handleFioInput} name={'gender'}  checked={stateFIO.gender === 'мужской'} value={'мужской'} type={'radio'} />
+                            <input onChange={handleFioInput}  name={'gender'}  checked={stateFIO.gender === 'мужской'} value={'мужской'} type={'radio'} />
                             мужской
                         </lable>
                         <lable className={'flex item gap-2'}>
@@ -378,7 +376,7 @@ export default function Home() {
                     </div>
                     <div className={'flex mt-2 items-center gap-2'}>
                         <h2 className={'text-sm font-bold'}>СНИЛС</h2>
-                        <input onChange={handleFioInput} name={'snils'} value={stateFIO.snils} className={'border'} type={'text'}/>
+                        <input onChange={handleFioInput} required name={'snils'} value={stateFIO.snils} className={'border'} type={'number'}/>
                     </div>
                     <div className={'flex mt-2  text-xs gap-2'}>
                         <h2>Дата рождения</h2>
@@ -671,16 +669,31 @@ export default function Home() {
                               })
                               : null
                       }
-                      <div className={'absolute  top-10 left-36 text-xs'}>
-                          <label className={'flex gap-2 mt-2 items-center '}><span className={'w-9/12'}>Год сдачи</span> <DatePicker  selected={godSdachi1} onChange={(date)=>SETgodSdachi0(date)} /></label>
-                          <label className={'flex items-center mt-1'}><span className={'w-9/12'}>Год сдачи</span> <DatePicker selected={godSdachi2} onChange={(date)=>SETgodSdachi1(date)} /></label>
-                          <label className={'flex items-center mt-1'}><span className={'w-9/12'}>Год сдачи</span> <DatePicker selected={godSdachi3} onChange={(date)=>SETgodSdachi2(date)} /></label>
-                      </div>
-                      <div className={'absolute w-2/12 top-10 right-0 text-xs'}>
-                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0'} name={'firstExem'}  onChange={handleScore} value={stateScore.firstExem} type={"number"}/>
-                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0 mt-1'} name={'secondExem'}  onChange={handleScore} value={stateScore.secondExem} type={"number"}/>
-                          <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0 mt-1'} name={'thirdExem'}  onChange={handleScore} value={stateScore.thirdExem} type={"number"}/>
-                      </div>
+                      {
+                          stateStudyCourses.course === 'ДИЗАЙН'
+                          ? <div className={'absolute  top-10 left-36 text-xs'}>
+                                  <label className={'flex gap-2 mt-2 items-center '}><span className={'w-9/12'}>Год сдачи</span> <DatePicker  selected={godSdachi1} onChange={(date)=>SETgodSdachi0(date)} /></label>
+                                  <label className={'flex items-center mt-1'}><span className={'w-9/12'}>Год сдачи</span> <DatePicker selected={godSdachi2} onChange={(date)=>SETgodSdachi1(date)} /></label>
+                              </div>
+                          :     <div className={'absolute  top-10 left-36 text-xs'}>
+                                  <label className={'flex gap-2 mt-2 items-center '}><span className={'w-9/12'}>Год сдачи</span> <DatePicker  selected={godSdachi1} onChange={(date)=>SETgodSdachi0(date)} /></label>
+                                  <label className={'flex items-center mt-1'}><span className={'w-9/12'}>Год сдачи</span> <DatePicker selected={godSdachi2} onChange={(date)=>SETgodSdachi1(date)} /></label>
+                                  <label className={'flex items-center mt-1'}><span className={'w-9/12'}>Год сдачи</span> <DatePicker selected={godSdachi3} onChange={(date)=>SETgodSdachi2(date)} /></label>
+                              </div>
+                      }
+                      {
+                          stateStudyCourses.course === 'ДИЗАЙН'
+                          ?<div className={'absolute w-2/12 top-10 right-0 text-xs'}>
+                                  <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0'} name={'firstExem'}  onChange={handleScore} value={stateScore.firstExem} type={"number"}/>
+                                  <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0 mt-1'} name={'secondExem'}  onChange={handleScore} value={stateScore.secondExem} type={"number"}/>
+                              </div>
+                          : <div className={'absolute w-2/12 top-10 right-0 text-xs'}>
+                                  <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0'} name={'firstExem'}  onChange={handleScore} value={stateScore.firstExem} type={"number"}/>
+                                  <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0 mt-1'} name={'secondExem'}  onChange={handleScore} value={stateScore.secondExem} type={"number"}/>
+                                  <input className={'p-0 text-center h-5 border-l-0 border-t-0 border-r-0 mt-1'} name={'thirdExem'}  onChange={handleScore} value={stateScore.thirdExem} type={"number"}/>
+                              </div>
+                      }
+
                   </div>
 
 
@@ -727,7 +740,7 @@ export default function Home() {
                       </div>
                       <div className={'flex flex-col'}>
                           <span className={'font-bold'}>место сдачи вступительных испытаний с использованием дистанционных технологий</span>
-                          <input name={'placeOfExem'} onChange={handleAdvancedSubject} value={stateAdvancedSubjects.placeOfExem} className={'w-full'} type={"text"}/>
+                          <input name={'placeOfExem'} onChange={handleAdvancedSubject}  disabled value={stateAdvancedSubjects.placeOfExem} className={'w-full'} type={"text"}/>
                       </div>
                   </div>
 
@@ -746,25 +759,31 @@ export default function Home() {
                               </label>
                           </div>
                       </div>
+                      {
+                          stateQuestionAnswer.uniquePerson === 'да'
+                          ? <>
+                                  <ul className={'flex flex-col text-xs'}>
+                                      <li className={'flex gap-1 items-center'}>
+                                          <input name={'categoryInv'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.categoryInv === 'сирота'} value={'сирота'}  type={"radio"}/>
+                                          <span>– как ребенок-сирота или как ребенок, оставшийся без попечения родителей</span>
+                                      </li>
+                                      <li className={'flex gap-1 items-center'}>
+                                          <input name={'categoryInv'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.categoryInv === 'инвалид'} value={'инвалид'}  type={"radio"} />
+                                          <span>– как ребенок-инвалид, инвалид I или II группы, инвалид с детства</span>
+                                      </li>
+                                      <li className={'flex gap-1 items-center'}>
+                                          <input name={'categoryInv'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.categoryInv === 'иная категория'} value={'иная категория'}  type={"radio"} />
+                                          <span>– иная категория</span>
+                                      </li>
+                                  </ul>
+                                  <div className={'w-full flex items-center gap-1'}>
+                                      <span className={'w-2/6'}>если ДА, указать основание</span>
+                                      <input name={'uniquePersonInfo'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.uniquePersonInfo} className={'w-4/6'} type={"text"}/>
+                                  </div>
+                              </>
+                          : null
+                      }
 
-                      <ul className={'flex flex-col text-xs'}>
-                          <li className={'flex gap-1 items-center'}>
-                              <input name={'categoryInv'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.categoryInv === 'сирота'} value={'сирота'}  type={"radio"}/>
-                              <span>– как ребенок-сирота или как ребенок, оставшийся без попечения родителей</span>
-                          </li>
-                          <li className={'flex gap-1 items-center'}>
-                              <input name={'categoryInv'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.categoryInv === 'инвалид'} value={'инвалид'}  type={"radio"} />
-                              <span>– как ребенок-инвалид, инвалид I или II группы, инвалид с детства</span>
-                          </li>
-                          <li className={'flex gap-1 items-center'}>
-                              <input name={'categoryInv'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.categoryInv === 'иная категория'} value={'иная категория'}  type={"radio"} />
-                              <span>– иная категория</span>
-                          </li>
-                      </ul>
-                      <div className={'w-full flex items-center gap-1'}>
-                            <span className={'w-2/6'}>если ДА, указать основание</span>
-                            <input name={'uniquePersonInfo'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.uniquePersonInfo} className={'w-4/6'} type={"text"}/>
-                      </div>
                   </div>
 
                   <div className={'w-full text-xs flex flex-col mt-1'}>
@@ -844,9 +863,19 @@ export default function Home() {
                       <div className={'flex w-full mt-1'}>
                             <span className={'w-2/6'}>если ДА, указать сведения о них</span>
                             <div className={'flex flex-col w-4/6 gap-1'}>
-                                <input name={'uniquePersonAchievements1'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.uniquePersonAchievements1}  className={'w-full'} type={"text"}/>
-                                <input name={'uniquePersonAchievements2'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.uniquePersonAchievements2}  className={'w-full'} type={"text"}/>
-                                <input name={'uniquePersonAchievements3'} onChange={handleQuestionAnswer} value={stateQuestionAnswer.uniquePersonAchievements3}  className={'w-full'} type={"text"}/>
+                                <label className={'flex gap-1'}>
+                                    Диплом/Аттестат с отличием
+                                    <input name={'uniquePersonAchievements1'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.uniquePersonAchievements1}  className={''} type={"checkbox"}/>
+                                </label>
+                                <label className={'flex gap-1'}>
+                                    Знак ГТО
+                                    <input name={'uniquePersonAchievements2'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.uniquePersonAchievements2}  className={''} type={"checkbox"}/>
+                                </label>
+                                <label className={'flex gap-1'}>
+                                    Волонтерская деятельность
+                                    <input name={'uniquePersonAchievements3'} onChange={handleQuestionAnswer} checked={stateQuestionAnswer.uniquePersonAchievements3}  className={''} type={"checkbox"}/>
+
+                                </label>
                             </div>
                       </div>
                   </div>
@@ -987,11 +1016,11 @@ export default function Home() {
                                                   Лично
                                               </label>
                                               <label className={'flex gap-2 font-bold'}>
-                                                  <input name={'docBack'} onChange={handleOldStudy} checked={stateOldStudyStatus.docBack === 'почта'} value={'почта'} type={"radio"}/>
+                                                  <input name={'docBack'} onChange={handleOldStudy} disabled checked={stateOldStudyStatus.docBack === 'почта'} value={'почта'} type={"radio"}/>
                                                   Почтой России
                                               </label>
                                               <label className={'flex gap-2 font-bold'}>
-                                                  <input name={'docBack'} onChange={handleOldStudy} checked={stateOldStudyStatus.docBack === 'доверенность'} value={'доверенность'} type={"radio"}/>
+                                                  <input name={'docBack'} onChange={handleOldStudy} disabled checked={stateOldStudyStatus.docBack === 'доверенность'} value={'доверенность'} type={"radio"}/>
                                                   По доверенности
                                               </label>
                                           </div>
