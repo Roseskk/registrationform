@@ -1,4 +1,6 @@
 import Head from "next/head";
+import Image from "next/image";
+
 
 function Student({students}) {
     const design = {
@@ -1016,9 +1018,154 @@ function Student({students}) {
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
+                                </div>
 
+                                <div className={'flex w-full flex-col text-sm mt-96'}>
+
+                                    <div className={'flex items-center justify-center'}>
+                                        <Image src={'/shapka.png'}  layout={'fixed'} width={'1000px'} height={'200px'} objectFit={"cover"} />
+                                    </div>
+
+                                    <div className={'flex flex-col justify-end mt-2'}>
+                                        <span className={' flex justify-end items-end'}>Председателю приемной комиссии</span>
+                                        <span className={' flex justify-end items-end'}>Ректору АНО ВО «Институт бизнеса и дизайна»</span>
+                                        <span className={' flex justify-end items-end'}>С.С. Юрову</span>
+                                    </div>
+
+                                    <div className={'flex items-center justify-center mt-5'}>
+                                        <span className={'font-bold text-lg text-center'}>
+                                            Заявление <br />
+                                            о согласии  на зачисление
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <div className={'flex flex-col  justify-start'}>
+                                            <h2 className={'font-bold text-center'}>СОГЛАСИЕ <br />
+                                                на обработку персональных данных поступающего, обучающегося</h2>
+                                            <div className={'p-0 m-0 text-xs font-normal w-full flex  items-center '}>
+                                                Я,
+                                                <div className={'w-full mt-1 '}>
+                                                    <div className={'w-full flex items-center justify-center border-b border-b-black'}>
+                                                        <span className={' text-sm  '}>{stud.middleName + ' ' + stud.name + ' '+  stud.thirdName}</span>
+                                                    </div>
+                                                    <span className={'flex items-center justify-center'}>(Ф.И.О)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className={'w-full flex flex-col text-xs mt-1'}>
+                                            <div className={'flex flex-wrap gap-2 w-full'}>
+                                                <div className={'flex gap-2'}>
+                                                    <span>документ:</span>
+                                                    <span className={'underline'}>{stud.passportName}</span>
+                                                </div>
+                                                <div className={'flex gap-2'}>
+                                                    <span>серия:</span>
+                                                    <span className={'underline'}>{stud.seria}</span>
+                                                </div>
+                                                <div className={'flex gap-2'}>
+                                                    <span>№</span>
+                                                    <span className={'underline'}>{stud.nomer}</span>
+                                                </div>
+
+                                                <div className={'w-full flex flex-col'}>
+                                                    <div className={'flex relative w-full gap-2'}>
+                                                        <span>кем, когда выдан</span>
+                                                        <div className={'w-3/4 border-b border-b-black '}>
+                                                            <span className={''}>{stud.kemvidan + ' ' + new Date(stud.passportDate).toLocaleDateString('ru')}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className={'w-full flex flex-col text-xs'}>
+                                            <div className={'w-full flex flex-col gap-1'}>
+                                                <span className={''}>зарегистрированный (ая) по адресу :</span>
+                                                <div className={' border-b border-b-black'}>
+                                                    <div className={'flex flex-wrap gap-2'}>
+                                                        <span className={''}>{stud.country}</span>
+                                                        <span className={''}>{stud.resp}</span>
+                                                        <span className={''}>{stud.rajon}</span>
+                                                        <strong>Город</strong>
+                                                        <span className={''}>{stud.city}</span>
+                                                        <strong>Улица</strong>
+                                                        <span className={''}>{stud.street}</span>
+                                                        <strong>Дом</strong>
+                                                        <span className={''}>{stud.house}</span>
+                                                        <strong>Кв.</strong>
+                                                        <span className={''}>{stud.kv}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span className={'text-sm mt-1 text-justify'}>даю своё согласие на зачисление в <strong>АНО ВО «Институт бизнеса и дизайна».</strong></span>
+                                        </div>
+
+                                        <div className={'w-full flex flex-col'}>
+                                            <span><strong>Условия поступления:</strong></span>
+                                            {
+                                                stud.level === 'БАКАЛАВРИАТ'
+                                                ? <div className={'flex gap-2 items-center'}>
+                                                    <span>бакалавриат</span>
+                                                    <span className={'w-4 h-4 bg-black rounded text-center text-white'}>&#10004;</span>
+                                                  </div>
+                                                :  <div className={'flex gap-2 items-center'}>
+                                                        <span>магистратура</span>
+                                                        <span className={'w-4 h-4 bg-black rounded text-center text-white'}>&#10004;</span>
+                                                    </div>
+                                            }
+                                            <div className={'flex items-center gap-2'}>
+                                                <span>направление подготовки</span>
+                                                <div className={'w-3/4 border-b border-b-black text-center'}>
+                                                    <span className={' font-bold '}>{stud.wayBC}</span>
+                                                </div>
+                                            </div>
+                                            <span className={'text-center'}>(наименование образовательной программы)</span>
+
+                                            <div className={'flex flex-col gap-1 mt-2'}>
+                                                {
+                                                    stud.studyTime === 'очная'
+                                                    ? <div className={'flex gap-2'}>
+                                                        <span>очная форма обучения</span>
+                                                        <span className={'w-4 h-4 bg-black rounded text-center text-white'}>&#10004;</span>
+                                                      </div>
+                                                    : <div className={'flex gap-2'}>
+                                                            <span>очно-заочная форма обучения</span>
+                                                            <span className={'w-4 h-4 bg-black rounded text-center text-white'}>&#10004;</span>
+                                                        </div>
+                                                }
+                                            </div>
+
+                                            <div className={'flex flex-col relative'}>
+                                                <span><strong>Основание приема:</strong></span>
+                                                <p>на места по договорам об образовании на обучение по образовательным  программам высшего образования, заключаемым при приеме на обучение за счет средств физических и (или) юридических лиц в соответствии с  Правилами приема на 2022/2023 учебный год  в АНО ВО «Институт бизнеса и дизайна».
+                                                    <span className={'absolute w-4 h-4 border border-black translate-y-0.5 translate-x-1 '}> </span>
+                                                </p>
+                                            </div>
+
+                                            <div className={'flex justify-around mt-4'}>
+                                                <span>«______»_____________ 2022 г.</span>
+                                                <div className={'flex flex-col'}>
+                                                    <span>_______________/_______________________________ </span>
+                                                    <div className={'flex justify-around'}>
+                                                        <span>подпись </span>
+                                                        <span>(расшифровка подписи) </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className={'flex flex-col mt-2  items-end'}>
+                                                <span className={'text-sm font-bold'}>С условиями приема в АНО ВО «Институт бизнеса и дизайна» ознакомлен(а).                        </span>
+                                                <span>____________________________________________________/_______________________</span>
+                                                <span>подпись законного представителя (в случае несовершеннолетнего абитуриента) </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
